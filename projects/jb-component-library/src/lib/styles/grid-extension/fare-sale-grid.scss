@@ -1,0 +1,44 @@
+.jb-fare-sale-grid {
+  &.jb-grid {
+    @media #{$breakpoint-small} {
+      grid-auto-rows: unset;
+      & > * {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    @media #{$breakpoint-large} {
+      .col-5-l {
+        @include create-col(5);
+        @include ml-offset(1);
+
+        @supports (display: grid) {
+          grid-column: 2/7;
+        }
+      }
+
+      .col-4-l {
+        @include create-col(4);
+        @include mr-offset(1);
+        margin-bottom: 0;
+
+        @supports (display: grid) {
+          grid-column: 8/12;
+        }
+      }
+    }
+
+    @media #{$breakpoint-medium} {
+      .col-4-m {
+        @include create-col(4);
+        @include mr-offset(1);
+        margin-bottom: 0;
+
+        @supports (display: grid) {
+          grid-column: 8/12;
+        }
+      }
+    }
+  }
+}

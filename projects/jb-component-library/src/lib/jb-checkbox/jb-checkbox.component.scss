@@ -1,0 +1,14 @@
+@import '../styles/variables';
+
+.icon {
+  transform: scale(0);
+  transition-duration: $td-vfast;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  width: 14px;
+  height: 14px;
+}
+
+.checked-icon {
+  transform: scale(1);
+}

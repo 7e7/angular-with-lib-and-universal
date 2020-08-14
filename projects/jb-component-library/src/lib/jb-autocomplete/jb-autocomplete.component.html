@@ -1,0 +1,59 @@
+<div
+  aria-haspopup="listbox"
+  class="flex flex-column relative"
+  [attr.aria-expanded]="inputFocused"
+  [attr.aria-owns]="listId"
+  [class.justify-between]="inputFocused"
+  [class.justify-center]="hideList"
+  [class.jb-input-max-width]="isMaxWidth"
+  #wrapper
+>
+  <jb-type-ahead-input
+    [listId]="listId"
+    [control]="viewControl"
+    [label]="label"
+    [isListOpen]="inputFocused"
+    [ariaDescribedBy]="ariaDescribedBy"
+    (click)="anchor.open()"
+    (onFocus)="anchor.open()"
+    (onBlur)="onTouched(); allowValidate()"
+    #input
+    jbAnchor
+    #anchor="jbAnchor"
+    [flyout]="flyout"
+  ></jb-type-ahead-input>
+  <jb-flyout
+    #flyout
+    [fitToAnchorWidth]="true"
+    (afterOpened)="showDropdown()"
+    (beforeClosed)="hideDropdown()"
+  >
+    <jb-scrolling-cities-typeahead-list
+      #scrollingCitiesList
+      *ngIf="isScrollingCityVariant; else standardVariant"
+      [listId]="listId"
+      [hidden]="hideList"
+      [options]="filteredOptions"
+      [searchTerm]="viewControl.value"
+      [activeOption]="activeOption"
+      [isPopUpFocused]="isPopUpOptionFocused"
+      [modalLinkText]="modalLinkText"
+      [isKeyPressed]="keyPressed"
+      (modalLinkClicked)="modalLinkClicked.emit()"
+      (optionSelected)="selectOptionAndHideDropdown($event)"
+      (hover)="setActiveOptionByIndex($event)"
+    ></jb-scrolling-cities-typeahead-list>
+
+    <ng-template #standardVariant>
+      <jb-standard-typeahead-list
+        [listId]="listId"
+        [hidden]="hideList"
+        [options]="filteredOptions"
+        [searchTerm]="viewControl.value"
+        [activeOption]="activeOption"
+        (optionSelected)="selectOptionAndHideDropdown($event)"
+        (hover)="setActiveOptionByIndex($event)"
+      ></jb-standard-typeahead-list>
+    </ng-template>
+  </jb-flyout>
+</div>

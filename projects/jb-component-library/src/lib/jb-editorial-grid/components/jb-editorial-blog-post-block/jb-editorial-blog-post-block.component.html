@@ -1,0 +1,33 @@
+<div
+  class="h-inherit link-flex link-column link-no-underline no-underline-hover"
+>
+  <a
+    class="pointer w-100 h-100 db color-inherit hover-inherit no-underline"
+    [href]="href"
+    [routerLink]="link"
+    [target]="target"
+  >
+    <div class="flex justify-center items-center overflow-hidden h-100">
+      <ng-content select="jb-editorial-image"></ng-content>
+    </div>
+    <div class="bg-off-white line-height-0 pb4 flex-none">
+      <jb-flag title="From the blog"></jb-flag>
+      <div class="mt3 mh5">
+        <h3 class="mb3">
+          <ng-content select="[JbBlogTitle]"></ng-content>
+        </h3>
+        <div class="block link-space"></div>
+      </div>
+    </div>
+  </a>
+  <span class="absolute link-position">
+    <a jbActionLink [href]="href" [routerLink]="link" [target]="target">
+      See full story
+      <jb-icon
+        class="pl1"
+        name="externalLink"
+        label="opens a new window"
+      ></jb-icon>
+    </a>
+  </span>
+</div>

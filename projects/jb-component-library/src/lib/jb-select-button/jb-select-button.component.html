@@ -1,0 +1,27 @@
+<div>
+  <label jbInputLabel [isShrunk]="anchor.getIsOpen() || value">
+    {{ placeholder }}
+  </label>
+  <button
+    jbAnchor
+    type="button"
+    #anchor="jbAnchor"
+    [title]="placeholder"
+    [attr.aria-expanded]="anchor.getIsOpen()"
+    [attr.aria-describedby]="ariaDescribedBy"
+    class="bg-white w-100 flex flex-row items-center avenir pointer ba ph3 jb-input-height slate-gray jb-form-field"
+    [ngClass]="{ active: anchor.getIsOpen() }"
+    (click)="anchor.toggle()"
+    [flyout]="flyoutRef"
+  >
+    <div class="mr2 dropdown-text pt4 pb2 charcoal tl dib truncate">
+      <!-- &nbsp is needed for proper styling on IE 11 -->
+      {{ value ? value : '&nbsp;' }}
+    </div>
+    <jb-expandable-indicator
+      class="flex ml-auto"
+      [value]="anchor.getIsOpen()"
+      [hasError]="hasError"
+    ></jb-expandable-indicator>
+  </button>
+</div>

@@ -1,0 +1,18 @@
+<div
+  class="flex flex-column relative-ns"
+  (keydown.escape)="focusButton(); hide()"
+>
+  <div jbAnchor #anchor="jbAnchor" [flyout]="flyout">
+    <ng-content select="jb-filters-button"></ng-content>
+  </div>
+  <jb-flyout
+    #flyout
+    offsetY="5px"
+    enableFocusTrap="false"
+    fullscreenOnPhone="true"
+    (afterClosed)="updateButton(); apply()"
+    (afterOpened)="updateButton()"
+  >
+    <ng-content select="jb-filters-content"></ng-content>
+  </jb-flyout>
+</div>

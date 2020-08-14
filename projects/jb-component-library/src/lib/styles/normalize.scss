@@ -1,0 +1,13 @@
+input:invalid,
+textarea:invalid {
+  box-shadow: none;
+}
+
+.jb-input,
+.jb-text-area,
+input:not([type='radio']):not([type='checkbox']),
+textarea {
+  /* stylelint-disable-next-line */
+  -webkit-appearance: none;
+  border-radius: 0;
+}

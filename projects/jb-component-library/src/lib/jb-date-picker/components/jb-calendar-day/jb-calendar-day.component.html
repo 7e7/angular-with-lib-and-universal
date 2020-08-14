@@ -1,0 +1,22 @@
+<button
+  #button
+  [attr.aria-label]="value | date: 'EEEE, MMMM d, y'"
+  class="bn w-100 bg-transparent royal-blue flex justify-center ph1 items-center cell-width h-100"
+  [ngClass]="{
+    'light-gray': state === 'disabled',
+    'from-date-hover': hoverState === 'from-date',
+    'to-date-hover': hoverState === 'to-date',
+    'one-way-hover': hoverState === 'selected',
+    'from-date-selected': state === 'from-date',
+    'to-date-selected': state === 'to-date',
+    'one-way-selected': state === 'selected',
+    'same-day-selected': state === 'same-day',
+    pointer: isInteractable,
+    b: state === 'default',
+    fw2: state !== 'default'
+  }"
+  [disabled]="state === 'disabled'"
+  [tabindex]="tabIndex"
+>
+  {{ value | date: 'd' }}
+</button>

@@ -1,0 +1,49 @@
+@import '../styles/variables';
+
+:host {
+  display: block;
+}
+
+:host-context(.jb-grid.one-up) {
+  @media #{$breakpoint-not-small} {
+    /* Set position absolute to the image to prevent the parent
+       from taking the image's height.
+       Parent height is determined by description's size */
+
+    a {
+      position: relative;
+    }
+
+    .image {
+      height: inherit;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .image,
+    .description {
+      width: 50%;
+    }
+
+    .description {
+      /* Since the image scales with the parent,
+         the image can't be targeted with min-height.
+         Instead, add min-height. */
+      min-height: 13rem;
+
+      &:only-child {
+        min-height: inherit;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.h-13 {
+  height: 13rem;
+}
+
+.jb-mt-16px {
+  margin-top: 0.75rem;
+}

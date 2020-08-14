@@ -1,0 +1,19 @@
+<button
+  #jbContextualHelpHeaderButton
+  class="bg-transparent bw0 f6 pointer flex items-center justify-center-ns justify-between w-100 ttc tracked-25 lh-solid avenir b pv2 ph0"
+  [ngClass]="isExpanded ? 'core-blue' : 'royal-blue'"
+  type="button"
+  (click)="onToggleExpansion($event)"
+  [attr.aria-expanded]="isExpanded"
+  [attr.aria-controls]="ariaControls"
+>
+  <ng-content></ng-content>
+  <jb-icon
+    #jbContextualHelpHeaderIcon
+    class="fill-royal-blue ml2 t-fast"
+    [ngClass]="isExpanded ? 'rotate-x-180' : ''"
+    name="chevron"
+    width="10px"
+    height="10px"
+  ></jb-icon>
+</button>

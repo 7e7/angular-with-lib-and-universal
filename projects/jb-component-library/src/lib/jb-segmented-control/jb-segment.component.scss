@@ -1,0 +1,33 @@
+@import '../styles/variables.scss';
+
+.checked + :host {
+  border-left-width: 0;
+}
+
+:host {
+  &:hover {
+    background-color: $off-white;
+    transition-duration: $td-med;
+  }
+
+  &:not(:last-child):not(.checked) {
+    border-right-width: 0;
+  }
+
+  &:first-child {
+    border-bottom-left-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-bottom-right-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+}
+
+label {
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  padding-bottom: 4px;
+  padding-top: 2px;
+}

@@ -1,0 +1,44 @@
+<div class="dn-ns relative">
+  <label jbInputLabel [isShrunk]="value">
+    {{ label }}
+  </label>
+  <button
+    type="button"
+    [title]="label"
+    class="bg-white w-100 flex flex-row items-center avenir pointer ba ph3 jb-input-height slate-gray jb-form-field"
+    (click)="handleButtonClick()"
+    [disabled]="isDatePickerDisabled"
+  >
+    <span class="mr2 dropdown-text pt4 pb2 charcoal tl">
+      {{ isValidDate ? (value | date: dateDisplayFormat) : value }}
+      <!-- &nbsp is needed for proper styling on IE 11 -->
+      {{ value ? '' : '&nbsp;' }}
+    </span>
+  </button>
+</div>
+
+<div
+  [class.active]="isFocused$ | async"
+  class="dn-s flex flex-column relative"
+  (click)="setFocus()"
+>
+  <label jbInputLabel [isShrunk]="isLabelShrunk$ | async" [attr.for]="id">
+    {{ label }}
+  </label>
+  <input
+    (cdkFocusChange)="
+      !!$event &&
+        $event === 'keyboard' &&
+        setFocus({ emit: $event === 'keyboard' })
+    "
+    cdkMonitorElementFocus
+    #input
+    class="copy pt2 pb2 ph3 w-100 h-100 bg-transparent charcoal jb-input jb-form-field dib pt4 ba b--medium-gray"
+    [id]="id"
+    autocomplete="off"
+    (blur)="blur.emit($event); allowValidate()"
+    (change)="onValueChange($event.target.value)"
+    [disabled]="isDatePickerDisabled"
+    [attr.aria-describedby]="ariaDescribedBy"
+  />
+</div>

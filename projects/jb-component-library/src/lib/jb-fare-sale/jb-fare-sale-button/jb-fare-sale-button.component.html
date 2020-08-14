@@ -1,0 +1,81 @@
+<!-- sold out -->
+<div
+  *ngIf="!clickable && !available"
+  class="slate-gray tl tr-ns sold-out-container flex-ns flex-column-ns justify-end-ns h-5-ns"
+>
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</div>
+
+<!-- readonly details -->
+<div
+  *ngIf="!clickable && available"
+  class="core-blue tl tr-ns details-container flex-ns flex-column-ns justify-end-ns h-5-ns"
+>
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</div>
+
+<!-- disabled/unavailable button -->
+<button
+  *ngIf="clickable && !available"
+  type="button"
+  [attr.aria-disabled]="true"
+  class="pa2 bg-light-gray br-rounded-4 b--none core-blue flex items-center justify-center h-7 h-6-ns cursor-not-allowed pointer-events-auto"
+  [ngClass]="{
+    'w-9': revenueType === 'price',
+    'w-7-5 w-9-ns': revenueType === 'points'
+  }"
+>
+  <jb-copy size="small">
+    <ng-content></ng-content>
+  </jb-copy>
+</button>
+
+<!-- available button -->
+<button
+  *ngIf="clickable && available && !href"
+  [type]="buttonType"
+  class="pv2-ns ph2 pv3 avenir jb-block-border bg-white ba br-rounded-4 br-no-underline tr-ns tl core-blue pointer pointer-events-auto inline-flex flex-column justify-center items-end-ns justify-start-ns"
+  [ngClass]="{
+    'min-h-6rem-ns min-h-7-s': variant === 'flight' || revenueType === 'price',
+    'w-6-point-75rem-s w-7': variant === 'flight' && revenueType === 'price',
+    'w-8-point-25rem': variant === 'flight' && revenueType === 'points',
+    'w-9': variant === 'flight + hotel' && revenueType === 'price',
+    'w-7-5 w-9-ns min-h-9-point-375rem-s min-h-7-point-25rem h-100':
+      variant === 'flight + hotel' && revenueType === 'points'
+  }"
+>
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</button>
+
+<!-- available link -->
+<a
+  *ngIf="clickable && available && href"
+  class="pv2-ns ph2 pv3 jb-block-border bg-white ba br-rounded-4 br-no-underline tr-ns tl core-blue no-underline hover-core-blue pointer pointer-events-auto flex flex-column justify-center justify-start-ns"
+  [attr.target]="target"
+  [attr.href]="href"
+  [ngClass]="{
+    'min-h-6rem-ns min-h-7-s': variant === 'flight' || revenueType === 'price',
+    'w-6-point-75rem-s w-7': variant === 'flight' && revenueType === 'price',
+    'w-8-point-25rem': variant === 'flight' && revenueType === 'points',
+    'w-9': variant === 'flight + hotel' && revenueType === 'price',
+    'w-7-5 w-9-ns min-h-9-point-375rem-s min-h-7-point-25rem h-100':
+      variant === 'flight + hotel' && revenueType === 'points'
+  }"
+>
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</a>
+
+<!-- button content template -->
+<ng-template #buttonContent>
+  <ng-content select="[JbButtonHeader]"></ng-content>
+  <div class="mv1 price-container">
+    <jb-copy size="medium" class="dib b v-top" *ngIf="revenueType === 'price'">
+      $
+    </jb-copy>
+    <span class="copy-price">{{ value }}</span>
+    <jb-copy size="medium" class="dib b ml1" *ngIf="revenueType === 'points'">
+      pts
+    </jb-copy>
+  </div>
+  <ng-content select="[JbButtonFooter]"></ng-content>
+</ng-template>

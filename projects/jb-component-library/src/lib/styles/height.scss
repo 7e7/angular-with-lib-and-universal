@@ -1,0 +1,155 @@
+@import './variables.scss';
+
+/* Heights */
+.h-0 {
+  height: $jb-0;
+}
+.h-1 {
+  height: $jb-1;
+}
+.h-1-5 {
+  height: $jb-1-5;
+}
+.h-2 {
+  height: $jb-2;
+}
+.h-2-5 {
+  height: $jb-2-5;
+}
+.h-3-25 {
+  height: $jb-3-25;
+}
+
+.h-4-5 {
+  height: $jb-4-5;
+}
+.h-5-5 {
+  height: $jb-5-5;
+}
+.h-6 {
+  height: $jb-6;
+}
+.h-7 {
+  height: $jb-7;
+}
+.h-7-5 {
+  height: $jb-7-5;
+}
+.h-9 {
+  height: $jb-9;
+}
+.h10 {
+  height: $jb-10;
+}
+
+/* Min-heights */
+.min-h-0 {
+  min-height: $jb-0;
+}
+.min-h-1 {
+  min-height: $jb-1;
+}
+.min-h-1-5 {
+  min-height: $jb-1-5;
+}
+.min-h-2 {
+  min-height: $jb-2;
+}
+.min-h-2-5 {
+  min-height: $jb-2-5;
+}
+.min-h-5-5 {
+  min-height: $jb-5-5;
+}
+.min-h-6 {
+  min-height: $jb-6;
+}
+.min-h-7 {
+  min-height: $jb-7;
+}
+.min-h-9 {
+  min-height: $jb-9;
+}
+.min-h-10 {
+  min-height: $jb-10;
+}
+
+/* Max-heights  DO THESE NEED TO BE UPDATED WITH A DASH??? */
+.max-h-0 {
+  max-height: $jb-0;
+}
+.max-h-1 {
+  max-height: $jb-1;
+}
+.max-h-1-5 {
+  max-height: $jb-1-5;
+}
+.max-h-2 {
+  max-height: $jb-2;
+}
+.max-h-2-5 {
+  max-height: $jb-2-5;
+}
+.max-h-5-5 {
+  max-height: $jb-5-5;
+}
+.max-h-6 {
+  max-height: $jb-6;
+}
+
+@media #{$breakpoint-not-small} {
+  .h-0-ns {
+    height: $jb-0;
+  }
+  .h-1-ns {
+    height: $jb-1;
+  }
+  .h-1-5-ns {
+    height: $jb-1-5;
+  }
+  .h-2-ns {
+    height: $jb-2;
+  }
+  .h-2-5-ns {
+    height: $jb-2-5;
+  }
+  .h-4-5-ns {
+    height: $jb-4-5;
+  }
+  .h-5-ns {
+    height: $jb-5;
+  }
+  .h-5-5-ns {
+    height: $jb-5-5;
+  }
+  .h-6-ns {
+    height: $jb-6;
+  }
+  .h-7-ns {
+    height: $jb-7;
+  }
+  .h-9-ns {
+    height: $jb-9;
+  }
+
+  .h-50-ns {
+    height: 50%;
+  }
+  .h-60-ns {
+    height: 60%;
+  }
+  .h-70-ns {
+    height: 70%;
+  }
+  .h-80-ns {
+    height: 80%;
+  }
+  .h-90-ns {
+    height: 90%;
+  }
+}
+
+/* JetBlue Input Height */
+.jb-input-height {
+  min-height: $jb-input-height;
+}

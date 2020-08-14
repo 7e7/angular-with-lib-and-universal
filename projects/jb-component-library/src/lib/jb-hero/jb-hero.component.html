@@ -1,0 +1,57 @@
+<header
+  [ngClass]="{
+    'bg-off-white core-blue': isLightTheme,
+    'bg-core-blue white': isDarkTheme
+  }"
+>
+  <div class="page-margin jb-max-width center-l">
+    <jb-breadcrumbs [item]="breadcrumbs" [theme]="theme"></jb-breadcrumbs>
+    <div class="jb-grid" [ngClass]="{ 'mt2-m mt3-l relative': isPrimary }">
+      <div
+        class="col-6-l col-8-m"
+        [ngClass]="{
+          'flex items-center mt0 mt2-ns pb2-l pb3': isSecondary
+        }"
+      >
+        <h1
+          [ngClass]="{
+            'mb4-l mt3-l mt2-m mt0 mb3': isPrimary,
+            'mb4-ns mb3': isSecondary,
+            white: isDarkTheme
+          }"
+        >
+          <ng-content select="[JbTitle]"></ng-content>
+        </h1>
+        <div [ngClass]="{ 'ml4 mr5 mr0-ns mb3-ns': isSecondary }">
+          <ng-content select="jb-icon"></ng-content>
+        </div>
+        <div
+          class="mb2 b copy-l ma0 charcoal"
+          [ngClass]="{ white: isDarkTheme }"
+        >
+          <ng-content select="[JbSubheader]"></ng-content>
+        </div>
+        <div
+          [ngClass]="{
+            'mb7-l mb6-m ma0 copy-m charcoal': isPrimary,
+            white: isDarkTheme
+          }"
+        >
+          <ng-content select="[JbDescription]"></ng-content>
+        </div>
+      </div>
+      <div
+        *ngIf="isPrimary"
+        class="col-4-l col-4-m relative illustration dib mb0"
+      >
+        <!-- REQUIRED FOR IE11 - DO NOT REMOVE -->
+        <div
+          *ngIf="imageSrc"
+          class="w-100 line-height-0 img-wrapper tc-ns db-ns"
+        >
+          <img [src]="imageSrc" [alt]="(imageAlt || '').trim()" />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

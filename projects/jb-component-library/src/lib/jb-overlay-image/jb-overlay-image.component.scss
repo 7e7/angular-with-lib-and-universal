@@ -1,0 +1,27 @@
+@import '../styles/variables.scss';
+
+@media #{$breakpoint-not-small} {
+  .bg-y-top-ns {
+    background-position-y: top;
+  }
+
+  .bg-y-bottom-ns {
+    background-position-y: bottom;
+  }
+
+  .bg-y-center-ns {
+    background-position-y: center;
+  }
+
+  .bg-x-center-ns {
+    background-position-x: center;
+  }
+
+  .bg-x-left-ns {
+    background-position-x: left;
+  }
+
+  .bg-x-right-ns {
+    background-position-x: right;
+  }
+}

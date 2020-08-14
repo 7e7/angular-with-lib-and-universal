@@ -1,0 +1,15 @@
+<fieldset class="ba b--transparent pa0">
+  <legend class="screen-reader-only">{{ ariaLabel }}</legend>
+
+  <div class="inline-flex">
+    <jb-segment
+      class="t-out-hover"
+      *ngFor="let segment of segments; let i = index"
+      [value]="segment.value"
+      [label]="segment.label"
+      [name]="id + '-segments'"
+      [checked]="segment.value === value"
+      (valueChange)="handleChange($event)"
+    ></jb-segment>
+  </div>
+</fieldset>

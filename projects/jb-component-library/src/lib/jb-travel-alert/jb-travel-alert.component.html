@@ -1,0 +1,32 @@
+<div
+  class="bg-royal-blue travel-padding flex justify-center justify-between items-center"
+  [@alertOpen]="isOpen"
+>
+  <!-- Placeholder flex item as absolute positioning breaks on IE -->
+  <div class="dn db-ns"></div>
+  <jb-link
+    [href]="href"
+    [link]="link"
+    [target]="target"
+    class="flex items-center hover-white white color-inherit no-underline underline-hover"
+  >
+    <div class="inline-flex flex-row-reverse items-center">
+      <p class="copy-s mt-2px mb0 white word-wrap no-underline underline-hover">
+        <ng-content></ng-content>
+      </p>
+      <jb-icon
+        class="mv2 ma1-ns fill-white flex items-center"
+        name="alert"
+        height="32"
+        width="32"
+      ></jb-icon>
+    </div>
+  </jb-link>
+  <jb-button-close
+    aria-label="close travel alert"
+    (click)="onCloseAlert()"
+    size="small"
+    fill="white"
+    class="ml3 right-0 mh0-ns"
+  ></jb-button-close>
+</div>

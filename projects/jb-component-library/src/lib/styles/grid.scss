@@ -1,0 +1,257 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+@import './grid-extension/fare-sale-grid.scss';
+
+/* ====== GRID SETUP ====== */
+.jb-grid {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -$grid-gap-mobile/2;
+  margin-right: -$grid-gap-mobile/2;
+  grid-column-gap: $grid-gap-mobile;
+
+  @media #{$breakpoint-not-small} {
+    margin-left: -$grid-gap/2;
+    margin-right: -$grid-gap/2;
+  }
+
+  @supports (display: grid) {
+    @media #{$breakpoint-small} {
+      grid-column-gap: $grid-gap-mobile;
+    }
+    margin-left: unset;
+    margin-right: unset;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 1fr;
+    grid-column-gap: $grid-gap;
+    grid-row-gap: calculateRem(8);
+    @media #{$breakpoint-not-small} {
+      grid-row-gap: $grid-gap;
+    }
+  }
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.jb-grid.flex-row {
+  flex-direction: row;
+}
+
+.jb-grid.flex-column {
+  @media #{$breakpoint-not-small} {
+    flex-direction: column;
+  }
+}
+
+.jb-grid-ph-s {
+  @media #{$breakpoint-small} {
+    padding-left: $grid-gap-mobile;
+    padding-right: $grid-gap-mobile;
+  }
+}
+
+// Default styling, for mobile inheritance
+.jb-grid > * {
+  @include col-margin();
+  width: 100%;
+  box-sizing: border-box;
+
+  @supports (display: grid) {
+    margin: unset;
+    grid-column: auto / span 12;
+    width: auto;
+    box-sizing: unset;
+  }
+}
+
+ul.jb-grid {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    padding: unset;
+  }
+}
+
+.gr-unset,
+.jb-grid.gr-unset {
+  @supports (display: grid) {
+    grid-auto-rows: unset;
+  }
+}
+
+/* ====== COLUMN CLASSES ====== */
+.jb-grid {
+  @for $i from 1 through 12 {
+    .col-#{$i} {
+      @include create-col($i);
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @media #{$breakpoint-medium} {
+      .col-#{$i}-m {
+        @include create-col($i);
+      }
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @media #{$breakpoint-large} {
+      .col-#{$i}-l {
+        @include create-col($i);
+      }
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @media #{$breakpoint-not-small} {
+      .col-#{$i}-ns {
+        @include create-col($i);
+      }
+    }
+  }
+}
+
+/* ====== LAYOUTS OVERRIDES ====== */
+
+/* --- Grid-Gap-0 ---------------- */
+@mixin gap-none() {
+  grid-row-gap: 0;
+  grid-column-gap: 0;
+}
+
+.gap-none {
+  @include gap-none();
+}
+
+.gap-none-s {
+  @media #{$breakpoint-small} {
+    @include gap-none();
+  }
+}
+
+.gap-row-none {
+  grid-row-gap: 0;
+}
+
+/* ====== STANDARD LAYOUTS ====== */
+
+/* --- One-up ------------------- */
+.one-up > * {
+  @media #{$breakpoint-not-small} {
+    @include create-col(12);
+  }
+}
+
+@mixin one-up-offset($cols: 10) {
+  @include col-width($cols);
+  @include mr-offset(12 - $cols - 1);
+  @include ml-offset(1);
+
+  @supports (display: grid) {
+    width: auto;
+    margin: 0;
+    grid-column: 2 / #{$cols + 2};
+  }
+}
+
+.one-up.grid-offset > * {
+  @media #{$breakpoint-not-small} {
+    @include one-up-offset();
+  }
+}
+
+.one-up.grid-offset-m > * {
+  @media #{$breakpoint-medium} {
+    @include one-up-offset();
+  }
+}
+
+.one-up.grid-offset-l > * {
+  @media #{$breakpoint-large} {
+    @include one-up-offset();
+  }
+}
+
+.one-up.grid-offset-l.nine-col > * {
+  @media #{$breakpoint-large} {
+    @include one-up-offset(9);
+  }
+}
+
+/* --- Two-up ------------------- */
+.two-up > * {
+  @media #{$breakpoint-not-small} {
+    @include create-col(6);
+  }
+}
+
+@mixin two-up-offset() {
+  @include col-width(5);
+  @include col-margin();
+
+  &:nth-child(odd) {
+    @include ml-offset(1);
+  }
+
+  &:nth-child(even) {
+    @include mr-offset(1);
+  }
+  @supports (display: grid) {
+    width: auto;
+    margin: 0;
+
+    &:nth-child(odd) {
+      grid-column: 2 / 7;
+      margin: 0;
+    }
+
+    &:nth-child(even) {
+      grid-column: 7 / 12;
+      margin: 0;
+    }
+  }
+}
+
+.two-up.grid-offset > * {
+  @media #{$breakpoint-not-small} {
+    @include two-up-offset();
+  }
+}
+
+.two-up.grid-offset-m > * {
+  @media #{$breakpoint-medium} {
+    @include two-up-offset();
+  }
+}
+
+.two-up.grid-offset-l > * {
+  @media #{$breakpoint-large} {
+    @include two-up-offset();
+  }
+}
+
+/* --- Three-up ----------------- */
+.three-up > * {
+  @media #{$breakpoint-not-small} {
+    @include create-col(4);
+  }
+}
+
+/* --- Four-up ------------------ */
+.four-up > * {
+  @media #{$breakpoint-medium} {
+    @include create-col(6);
+  }
+  @media #{$breakpoint-large} {
+    @include create-col(3);
+  }
+}

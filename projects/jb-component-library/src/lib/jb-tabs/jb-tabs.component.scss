@@ -1,0 +1,55 @@
+@import '../styles/variables.scss';
+
+.tab-border-light {
+  border-bottom: 1px solid $medium-gray;
+}
+
+.tab-border-dark {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tab-border {
+  @media #{$media-xs}, #{$media-s} {
+    top: 1.9375rem;
+  }
+}
+
+.lh-none {
+  line-height: 0;
+}
+
+button:last-child {
+  margin-right: 0;
+}
+
+hr.bn {
+  height: 0.25rem;
+  bottom: -1px;
+  background: $orange;
+  margin: 0 auto;
+  transition: 0.15s ease-in-out;
+  &.active {
+    width: 100%;
+    background: $orange;
+  }
+}
+
+.dark-tab {
+  color: $white;
+  opacity: 0.7;
+  fill: $white;
+  fill-opacity: 0.7;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    fill-opacity: 1;
+  }
+}
+
+.dark-tab-active {
+  color: $white;
+  opacity: 1;
+  fill: $white;
+  fill-opacity: 1;
+}

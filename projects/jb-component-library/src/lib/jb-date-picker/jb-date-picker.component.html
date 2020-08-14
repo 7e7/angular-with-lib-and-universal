@@ -1,0 +1,73 @@
+<div
+  class="w-100"
+  [class.flex]="isRangePicker"
+  jbAnchor
+  #anchor="jbAnchor"
+  [flyout]="flyout"
+>
+  <ng-content
+    select="jb-date-picker-input,jb-form-field-container"
+  ></ng-content>
+</div>
+
+<jb-flyout
+  #flyout
+  [enableFocusTrap]="false"
+  [fitToAnchorWidth]="!isTwoMonthDatePicker"
+  [fullscreenOnPhone]="true"
+  [maxWidth]="isTwoMonthDatePicker ? 700 : 370"
+  [minWidth]="isTwoMonthDatePicker ? 700 : 370"
+  placement="bottom-start"
+>
+  <div
+    *ngIf="anchor.getIsOpen()"
+    class="w-100 ba b--light-gray br2 br--bottom mt1-ns dialog-z-index bg-white"
+  >
+    <ng-template [ngIf]="isRangePicker" [ngIfElse]="singleDatePicker">
+      <jb-range-calendar
+        cdkTrapFocus
+        [stepperDirection]="monthStepper"
+        [availableMonths]="availableMonths"
+        [minMonth]="getMinimumMonth()"
+        [maxMonth]="getMaximumMonth()"
+        [rangeDateFrom]="fromDate"
+        [rangeDateTo]="toDate"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [defaultDate]="defaultDate"
+        [isFromDateActive]="isFromDateActive()"
+        [isTwoMonthDatePicker]="isTwoMonthDatePicker"
+        [(activeMonths)]="activeMonths"
+        (close)="closeCalendarAndFocusActiveInput()"
+        (dateSelected)="handleCalendarDateSelect($event)"
+        (fromDateSelected)="handleCalendarFromDateSelect($event)"
+        (toDateSelected)="handleCalendarToDateSelect($event)"
+      >
+        <ng-container *ngTemplateOutlet="jbMessage"></ng-container>
+      </jb-range-calendar>
+    </ng-template>
+  </div>
+</jb-flyout>
+
+<ng-template #singleDatePicker>
+  <jb-calendar
+    cdkTrapFocus
+    [minMonth]="getMinimumMonth()"
+    [maxMonth]="getMaximumMonth()"
+    [availableMonths]="availableMonths"
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+    [defaultDate]="defaultDate"
+    [selectedDate]="fromDate"
+    [isTwoMonthDatePicker]="isTwoMonthDatePicker"
+    [(activeMonths)]="activeMonths"
+    (close)="closeCalendarAndFocusActiveInput()"
+    (dateSelected)="handleCalendarDateSelect($event)"
+  >
+    <ng-container *ngTemplateOutlet="jbMessage"></ng-container>
+  </jb-calendar>
+</ng-template>
+
+<ng-template #jbMessage>
+  <ng-content select="jb-calendar-message"></ng-content>
+</ng-template>

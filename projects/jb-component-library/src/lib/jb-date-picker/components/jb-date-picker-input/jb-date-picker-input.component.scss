@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/form-variables.scss';
+
+:host {
+  height: $jb-input-height;
+}
+
+.jb-form-field {
+  box-sizing: border-box;
+}
+
+.jb-form-field.active,
+.jb-form-field:active,
+.jb-form-field:focus {
+  @include form-field-padding-offset('h', 3);
+}

@@ -1,0 +1,12 @@
+@import '../../../styles/colors-variables.scss';
+@import '../../../styles/variables.scss';
+
+.filters-button-hover:hover {
+  background-color: $off-white;
+  border: 1px solid $light-gray;
+  transition-duration: $td-med;
+}
+
+.filters-button-active-hover:hover {
+  border: 1px solid $royal-blue;
+}

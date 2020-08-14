@@ -1,0 +1,17 @@
+<div class="flex flex-column" role="list" #listContainer></div>
+<button
+  *ngIf="!displayAllItems"
+  [attr.aria-expanded]="isExpanded"
+  class="bn pa0 bg-transparent copy-s royal-blue hover-core-blue flex pointer pt2"
+  (click)="toggle()"
+>
+  <jb-icon
+    *ngIf="!isExpanded"
+    name="addElement"
+    class="pr2 h-1"
+    [style.line-height]="1.3"
+  ></jb-icon>
+  <span class="tl copy-s">
+    {{ isExpanded ? collapseMessage : expandMessage }}
+  </span>
+</button>

@@ -1,0 +1,29 @@
+<div *ngIf="!allowOutsideInteraction && isOpen" jbScrollLock></div>
+
+<div
+  *ngIf="isOpen"
+  [cdkTrapFocus]="!allowOutsideInteraction"
+  class="fixed overlay-z-index overflow-auto top-0 h-100 w-100 flex"
+  [ngClass]="{
+    'right-0 flex-row-reverse': position === 'right',
+    'left-0 flex-row': position === 'left',
+    'bg-black-60': !allowOutsideInteraction,
+    'jb-shadow-drawer': allowOutsideInteraction,
+    'drawer-panel': allowOutsideInteraction
+  }"
+>
+  <section
+    #clickOutside
+    class="bg-white drawer-z-index overflow-hidden relative flex flex-column self-start h-100 w-100"
+    [ngClass]="{
+      'drawer-panel': !allowOutsideInteraction
+    }"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </section>
+</div>
+
+<ng-template #content>
+  <ng-content select="jb-drawer-header"></ng-content>
+  <ng-content select="jb-drawer-body"></ng-content>
+</ng-template>

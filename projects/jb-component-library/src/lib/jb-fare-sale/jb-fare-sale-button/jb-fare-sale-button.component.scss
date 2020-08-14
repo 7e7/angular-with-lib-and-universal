@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.w-8-point-25rem {
+  width: 8.25rem;
+}
+
+.min-h-7-point-25rem {
+  min-height: 7.25rem;
+}
+
+.min-h-6rem {
+  min-height: 6rem;
+}
+
+.details-container,
+.sold-out-container {
+  .price-container {
+    display: block;
+  }
+}
+
+@media #{$breakpoint-small} {
+  .w-6-point-75rem-s {
+    width: 6.75rem;
+  }
+
+  .min-h-9-point-375rem {
+    min-height: 9.375rem;
+  }
+
+  .min-h-7-s {
+    min-height: 7rem;
+  }
+
+  .details-container,
+  .sold-out-container {
+    .price-container {
+      display: inline-block;
+    }
+  }
+}

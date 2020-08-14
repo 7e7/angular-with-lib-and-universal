@@ -1,0 +1,21 @@
+<div
+  *ngFor="let column of listData"
+  class="col-12 flex flex-column pl0 column jb-grid gr-unset gap-row-none pb6"
+  [ngClass]="{
+    'column-subheader': column.subSection[0].subHeader,
+    'no-subheader': !column.subSection[0].subHeader
+  }"
+>
+  <div class="dn db-l col-1-l"></div>
+  <div
+    *ngFor="let row of column.subSection"
+    [ngClass]="{
+      'col-5-m col-4-l': listData[0].subSection.length === 2,
+      'col-4-m col-3-l': listData[0].subSection.length === 3,
+      'no-row-subheader': !columnHasSubheader(row),
+      'row-subheader': columnHasSubheader(row)
+    }"
+  >
+    <jb-list-items-group [dataColumn]="row"></jb-list-items-group>
+  </div>
+</div>

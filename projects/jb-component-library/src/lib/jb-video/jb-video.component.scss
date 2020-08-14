@@ -1,0 +1,17 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.video-ratio {
+  height: 0;
+  padding-top: calc(591.44 / 1127.34 * 100%);
+}
+
+@media #{$media-xs}, #{$media-s} {
+  :host-context(.jb-grid) {
+    padding: 2rem 0 0.5rem;
+  }
+  :host-context(jb-video:not(:first-child)) {
+    border-top: 1px solid $medium-gray;
+    padding-top: 2rem;
+  }
+}

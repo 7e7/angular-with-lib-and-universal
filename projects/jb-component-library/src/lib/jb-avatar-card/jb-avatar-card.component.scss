@@ -1,0 +1,29 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables';
+
+$avatar-card-border-width: 1px;
+$avatar-card-border-width-focus: 2px;
+$avatar-card-border-width-diff: $avatar-card-border-width-focus -
+  $avatar-card-border-width;
+
+:host {
+  max-width: 160px;
+}
+
+button.active {
+  background-color: white;
+  border-width: $avatar-card-border-width-focus;
+
+  @include padding-offset('a', 2, $avatar-card-border-width-diff);
+}
+
+.mosaic-avatar-pl {
+  padding-left: 1.25rem;
+}
+
+.truncate {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

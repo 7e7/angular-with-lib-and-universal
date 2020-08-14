@@ -1,0 +1,15 @@
+<div #icon [ngClass]="{ 'center callout-block-icon mb3': hasContent(icon) }">
+  <ng-content select="jb-icon"></ng-content>
+</div>
+<div #image [ngClass]="{ 'center callout-block-image mb3': hasContent(image) }">
+  <ng-content select="jb-image"></ng-content>
+</div>
+<header class="mb2 core-blue">
+  <ng-content select="[JbTitle]"></ng-content>
+</header>
+<jb-copy>
+  <ng-content select="[JbDescription]"></ng-content>
+</jb-copy>
+<div #actionLink [ngClass]="{ mt3: hasContent(actionLink) }">
+  <ng-content select="[jbActionLink]"></ng-content>
+</div>

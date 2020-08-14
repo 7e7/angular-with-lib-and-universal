@@ -1,0 +1,8 @@
+<div *ngIf="!!textField" class="relative">
+  <ng-content select="jb-input-label"></ng-content>
+  <ng-content #textFieldInput select="input[jbInput]"></ng-content>
+</div>
+
+<ng-content></ng-content>
+
+<ng-content select="jb-error"></ng-content>

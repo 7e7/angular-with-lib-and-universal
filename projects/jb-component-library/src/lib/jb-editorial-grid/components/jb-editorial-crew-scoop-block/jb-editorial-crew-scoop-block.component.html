@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center bg-off-white h-inherit">
+  <div class="flex flex-column items-center">
+    <div class="icon-container">
+      <ng-content select="jb-icon"></ng-content>
+    </div>
+    <h3 class="mv2">Crew Scoop</h3>
+    <jb-copy size="standard" class="crew-scoop-container tc mb3">
+      <ng-content select="[JbCrewScoopCopy]"></ng-content>
+    </jb-copy>
+    <jb-copy size="small" class="b">
+      <ng-content select="[JbCreditName]"></ng-content>
+    </jb-copy>
+  </div>
+</div>

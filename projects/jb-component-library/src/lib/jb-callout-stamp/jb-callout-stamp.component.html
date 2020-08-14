@@ -1,0 +1,29 @@
+<figure
+  class="dib w4 h4 br-100 border-box ma0 flex justify-center content-center flex-wrap items-center"
+  [ngClass]="{
+    'ba bw2 b--dark-orange': hasBorder,
+    'bg-white core-blue': isLight,
+    'bg-core-blue white': isDark
+  }"
+  [class.percent]="isPercentType"
+  [class.price]="isPriceType"
+>
+  <div class="flex flex-column items-center justify-center h-100">
+    <span *ngIf="isPriceType" class="copy-s mb1">fares from</span>
+    <div class="copy-promo b" [ngClass]="{ white: isDark }">
+      <div *ngIf="isPriceType" class="flex">
+        <span class="copy-s b">$</span>
+        {{ value }}
+      </div>
+      <div class="flex" *ngIf="isPercentType">
+        {{ value }}
+        <span class="flex flex-column justify-center pl1">
+          <span class="copy b h1">%</span>
+          <span class="copy-s b">off</span>
+        </span>
+      </div>
+    </div>
+    <span *ngIf="isPriceType" class="b copy nt1">one-way</span>
+    <span *ngIf="isPercentType" class="copy-s">base fares</span>
+  </div>
+</figure>

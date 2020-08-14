@@ -1,0 +1,29 @@
+@import '~tachyons-sass/tachyons';
+@import '../../../styles/variables';
+
+:host {
+  @extend .pl0;
+
+  &:first-child {
+    @extend .pl0;
+  }
+
+  &:last-child {
+    @extend .pr0;
+    @extend .bn;
+    @extend .pb0;
+  }
+}
+
+:host-context(jb-related-content-block-page-specific) {
+  @extend .pt3;
+
+  &:first-child {
+    @extend .pt0;
+  }
+
+  @media #{$breakpoint-not-small} {
+    padding-top: 0;
+    padding-left: $spacing-large;
+  }
+}

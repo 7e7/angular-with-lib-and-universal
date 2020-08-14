@@ -1,0 +1,13 @@
+<a
+  class="pointer w-100 h-100 db color-inherit hover-inherit no-underline"
+  [attr.href]="href"
+  [attr.routerLink]="link"
+  [attr.target]="target"
+  [attr.rel]="rel"
+  [attr.aria-describedby]="
+    ariaDescribedBy || srText ? [ariaDescribedBy, srText ? srId : ''] : null
+  "
+>
+  <ng-content></ng-content>
+  <jb-sr-only *ngIf="srText" [attr.id]="srId">{{ srText }}</jb-sr-only>
+</a>

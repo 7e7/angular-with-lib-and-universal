@@ -1,0 +1,54 @@
+@import '../styles/variables.scss';
+
+$jb-popover-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+$popover-arrow-height: 12px;
+$tooltip-arrow-height: 16px;
+$tooltip-arrow-bottom: 28px;
+$tooptip-arrow-right: 1px;
+
+.jb-popover {
+  box-shadow: $jb-popover-shadow;
+  margin: $popover-arrow-height;
+  // This can be over-ridden with the z-index input
+  z-index: 10;
+}
+
+.jb-tooltip {
+  box-shadow: $jb-popover-shadow;
+  margin: $tooltip-arrow-height;
+  // This can be over-ridden with the z-index input
+  z-index: 10;
+}
+
+.jb-popover[x-placement='bottom'] .popover-arrow {
+  top: -$popover-arrow-height;
+
+  > svg {
+    transform: rotate(180deg);
+  }
+}
+
+.jb-popover[x-placement='top'] .popover-arrow {
+  bottom: -$popover-arrow-height;
+}
+
+.jb-popover[x-placement='left'] .popover-arrow {
+  right: -$popover-arrow-height;
+
+  > svg {
+    transform: rotate(270deg);
+  }
+}
+
+.jb-popover[x-placement='right'] .popover-arrow {
+  left: -$popover-arrow-height;
+
+  > svg {
+    transform: rotate(90deg);
+  }
+}
+
+.jb-tooltip[x-placement='top-end'] .tooltip-arrow {
+  bottom: -$tooltip-arrow-height;
+  right: -1px;
+}

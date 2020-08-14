@@ -1,0 +1,13 @@
+@import '../../styles/mixins';
+
+.play-button {
+  width: calculateRem(64);
+  height: calculateRem(64);
+}
+
+:host-context(.layout-two-up, .layout-three-up) {
+  .play-button {
+    width: calculateRem(40);
+    height: calculateRem(40);
+  }
+}

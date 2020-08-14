@@ -1,0 +1,56 @@
+<div
+  class="flex flex-row items-center"
+  [attr.aria-describedBy]="ariaDescribedBy"
+>
+  <jb-copy class="mr3 copy-dimensions" [class.flex-auto]="fluidWidth">
+    {{ label }}
+  </jb-copy>
+  <div class="h-1-5 relative" [class.w5]="!fluidWidth">
+    <div class="flex handle-container" [class.absolute]="!fluidWidth">
+      <button
+        class="bg-transparent pointer pa0 bn h-1-5 w-1-5 mr1"
+        type="button"
+        jb-qa-id="increment-down"
+        [attr.aria-label]="decreaseLabel"
+        (click)="stepBy(-1)"
+        (mouseover)="decrementHoverHandler(true)"
+        (mouseleave)="decrementHoverHandler(false)"
+        (blur)="onTouched(); allowValidate()"
+        [disabled]="isMinDisable"
+      >
+        <jb-hover-icon
+          class="royal-blue h-100"
+          [ngClass]="{ 'light-gray': isMinDisable }"
+          defaultIcon="incrementerDown"
+          [hoverIcon]="disableIncrementerDown"
+          [isHovered]="isDecrementFocused"
+        ></jb-hover-icon>
+      </button>
+      <span class="w-2 mr1 tc b copy" aria-live="assertive">
+        {{ value }}
+      </span>
+      <button
+        class="bg-transparent pointer pa0 bn h-1-5 w-1-5"
+        type="button"
+        jb-qa-id="increment-up"
+        [attr.aria-label]="increaseLabel"
+        (click)="stepBy(1)"
+        (mouseover)="incrementHoverHandler(true)"
+        (mouseleave)="incrementHoverHandler(false)"
+        (blur)="onTouched(); allowValidate()"
+        [disabled]="isMaxDisable"
+      >
+        <jb-hover-icon
+          class="royal-blue h-100"
+          [ngClass]="{ 'light-gray': isMaxDisable }"
+          defaultIcon="incrementerUp"
+          [hoverIcon]="disableIncrementerUp"
+          [isHovered]="isIncrementFocused"
+        ></jb-hover-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<jb-copy size="small mt4">
+  <ng-content select="[JbDescription]"></ng-content>
+</jb-copy>

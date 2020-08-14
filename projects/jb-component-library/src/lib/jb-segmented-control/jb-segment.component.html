@@ -1,0 +1,17 @@
+<input
+  class="screen-reader-only"
+  type="radio"
+  [attr.id]="id"
+  [name]="name"
+  [attr.value]="value"
+  [attr.checked]="checked || null"
+  (change)="handleChange(value)"
+/>
+<label
+  [attr.for]="id"
+  class="f6 royal-blue flex tc lh-title ph3 items-center"
+  [class.b]="checked"
+  [class.checked]="checked"
+>
+  {{ label }}
+</label>

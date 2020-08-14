@@ -1,0 +1,46 @@
+<a
+  [href]="href"
+  [target]="target"
+  class="jb-block-border no-underline ba-ns bt bb b--sky-blue
+        flex flex-column overflow-hidden br3-ns h-100"
+>
+  <jb-image
+    *ngIf="hasImage"
+    [src]="imgSrc"
+    cropped="true"
+    class="h-13 image"
+  ></jb-image>
+
+  <div class="description w-100 h-100">
+    <div
+      class="pt1 pl4-ns jb-grid-ph-s pb0 w-100"
+      [class.pr4]="hasNoIcon"
+      [class.pr3]="hasIcon"
+    >
+      <div class="flex justify-between ma0">
+        <jb-copy
+          class="jb-mt-16px royal-blue dib"
+          [class.mb2]="hasIcon"
+          [class.mb1]="hasNoIcon"
+          [size]="headerCopySize"
+        >
+          <ng-content select="[JbTitle]"></ng-content>
+        </jb-copy>
+
+        <jb-icon
+          *ngIf="hasIcon"
+          [name]="iconName"
+          class="pl1 display-inherit flex items-center"
+          height="40px"
+          width="40px"
+        ></jb-icon>
+      </div>
+    </div>
+    <div class="ph4-ns jb-grid-ph-s pb3 pt0 ma0 w-100">
+      <jb-copy [size]="descriptionCopySize" class="charcoal">
+        <ng-content select="[JbDescription]"></ng-content>
+      </jb-copy>
+    </div>
+  </div>
+  <jb-sr-only *ngIf="target === '_blank'">Opens in a new window.</jb-sr-only>
+</a>

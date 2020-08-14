@@ -1,0 +1,79 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
+// button specific variables
+$jb-12-5: 12.5rem;
+$jb-button-padding-14: calculateRem(14);
+$jb-button-padding-10: calculateRem(10);
+$jb-button-padding-horizontal: $jb-1-5;
+$jb-button-border-width: calculateRem(1);
+
+@mixin calculatePadding(
+  $v-padding,
+  $h-padding: $jb-button-padding-horizontal,
+  $border-width: $jb-button-border-width
+) {
+  padding: $v-padding $h-padding;
+
+  &.jb-button-standard {
+    padding: calc(#{$v-padding} - #{$border-width})
+      calc(#{$h-padding} - #{$border-width});
+  }
+}
+
+.baseline-offset {
+  top: -0.1rem;
+}
+
+:host(.jb-button-large) {
+  min-height: $jb-input-height;
+  min-width: $jb-12-5;
+  @include calculatePadding($jb-1);
+}
+
+:host(.jb-button-medium) {
+  min-height: $jb-3;
+  min-width: $jb-9;
+  @include calculatePadding($jb-button-padding-14);
+}
+
+:host(.jb-button-small) {
+  min-height: $jb-2-5;
+  min-width: $jb-8;
+  @include calculatePadding($jb-button-padding-10);
+}
+
+:host(.jb-button-paired) {
+  height: $jb-input-height;
+  width: $jb-input-height;
+  @include calculatePadding($jb-1, $jb-button-padding-14);
+
+  .baseline-offset {
+    top: 0;
+  }
+}
+
+:host(.jb-button-standard) {
+  border-width: $jb-button-border-width;
+}
+
+@media (pointer: fine) and (hover: hover),
+  (-moz-touch-enabled: 0),
+  (-ms-high-contrast: none) {
+  :host(.jb-button-primary:hover) {
+    background-color: $core-blue;
+  }
+
+  :host(.jb-button-secondary:hover) {
+    background-color: $dark-orange;
+  }
+
+  :host(.jb-button-standard:hover) {
+    background-color: $off-white;
+    color: $core-blue;
+  }
+
+  :host(.jb-button-disabled:hover) {
+    background-color: $dark-gray;
+  }
+}

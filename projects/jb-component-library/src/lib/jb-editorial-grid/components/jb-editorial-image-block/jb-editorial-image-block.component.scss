@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+@import '../../styles/jb-editorial-block.scss';
+
+:host {
+  @extend .jb-editorial-block;
+}
+
+.credit-background {
+  height: map-get($spacing, 8);
+  &:hover {
+    .underline-text {
+      text-decoration: underline;
+    }
+  }
+}

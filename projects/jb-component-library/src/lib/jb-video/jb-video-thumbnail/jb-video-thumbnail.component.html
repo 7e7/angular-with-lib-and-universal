@@ -1,0 +1,17 @@
+<button
+  class="pointer relative bn pa0 flex items-center justify-center"
+  (click)="emitEvent()"
+  aria-label="Play Video"
+>
+  <jb-image [alt]="title" [src]="thumbnailUrl" class="w-100"></jb-image>
+  <div
+    class="absolute top-0 right-0 left-0 bottom-0 center flex items-center justify-center"
+  >
+    <jb-hover-icon
+      defaultIcon="videoDefault"
+      hoverIcon="videoHover"
+      [isHovered]="isHovered"
+      class="play-button"
+    ></jb-hover-icon>
+  </div>
+</button>

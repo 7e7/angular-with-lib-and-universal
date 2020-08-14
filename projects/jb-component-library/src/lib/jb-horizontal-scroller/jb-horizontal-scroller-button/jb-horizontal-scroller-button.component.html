@@ -1,0 +1,23 @@
+<div
+  class="z-1 scroll-button-wrapper h-100 justify-center items-center bg-white"
+  [class.dn]="!isVisible"
+  [class.flex]="isVisible"
+>
+  <button
+    type="button"
+    class="pointer scroller-button bn flex justify-center items-center bg-off-white"
+    (click)="onClick.emit()"
+    tabindex="-1"
+    [attr.aria-label]="ariaLabel"
+    [disabled]="isDisabled"
+  >
+    <jb-icon
+      class="flex t-none"
+      name="mediumUp"
+      [ngClass]="{
+        'left rotate-270 left-0': isLeft,
+        'right rotate-90 right-0': isRight
+      }"
+    ></jb-icon>
+  </button>
+</div>

@@ -1,0 +1,9 @@
+@import '../../../styles/variables.scss';
+
+.active-input {
+  border-bottom: $spacing-extra-small solid $orange;
+}
+
+.flex-1 {
+  flex: 1;
+}

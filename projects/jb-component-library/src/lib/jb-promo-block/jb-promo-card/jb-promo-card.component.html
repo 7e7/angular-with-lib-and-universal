@@ -1,0 +1,35 @@
+<div class="ma2 mv5-m mv6-l mh0-ns jb-promo-card relative">
+  <div
+    class="absolute absolute--fill br-rounded-4 jb-promo-card-bg"
+    [ngStyle]="{ background: bgColor, opacity: opacity }"
+  ></div>
+
+  <div class="content relative">
+    <div class="pt4 pt6-m ph4">
+      <div #logo [ngClass]="{ 'h-2-5 mb3 fr': hasContent(logo) }">
+        <ng-content select="jb-image"></ng-content>
+      </div>
+    </div>
+
+    <div class="jb-grid-promo-ph-s ph6-ns">
+      <div #flag [ngClass]="{ 'h-25 mb2 cb': hasContent(flag) }">
+        <ng-content select="jb-flag"></ng-content>
+      </div>
+      <h2 class="mb2 cb">
+        <ng-content select="[JbTitle]"></ng-content>
+      </h2>
+      <jb-copy>
+        <ng-content select="[JbDescription]"></ng-content>
+      </jb-copy>
+      <div
+        #button
+        [ngClass]="{ 'h-25 button-z-index db mt4': hasContent(button) }"
+      >
+        <ng-content select="[jbButton]"></ng-content>
+      </div>
+      <jb-copy #legal size="x-small" class="pt4-ns pb3-ns pt3 pb2">
+        <ng-content select="[JbLegal]"></ng-content>
+      </jb-copy>
+    </div>
+  </div>
+</div>

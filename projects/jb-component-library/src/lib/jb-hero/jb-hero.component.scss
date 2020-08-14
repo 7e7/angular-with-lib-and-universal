@@ -1,0 +1,70 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
+:host {
+  display: block;
+}
+
+.illustration {
+  bottom: -1rem;
+  margin-top: -1rem;
+  display: flex;
+  align-items: flex-end;
+
+  @media #{$breakpoint-small} {
+    margin-bottom: 0;
+
+    .img-wrapper {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    img {
+      width: 14rem;
+    }
+  }
+
+  @media #{$breakpoint-not-small} {
+    justify-content: center;
+    position: absolute;
+    margin-bottom: 0;
+
+    @supports (display: grid) {
+      position: relative;
+    }
+
+    img {
+      width: auto;
+      max-height: 15rem;
+    }
+  }
+}
+
+.jb-grid {
+  // Custom rules for our grid with offsets
+  @media #{$breakpoint-small} {
+    grid-auto-rows: unset;
+  }
+
+  @media #{$breakpoint-large} {
+    .col-6-l {
+      @include create-col(6);
+      @include ml-offset(1);
+
+      @supports (display: grid) {
+        grid-column: 2/8;
+      }
+    }
+
+    .col-4-l {
+      @include create-col(4);
+      @include mr-offset(1);
+      margin-bottom: 0;
+
+      @supports (display: grid) {
+        grid-column: 8/12;
+      }
+    }
+  }
+}

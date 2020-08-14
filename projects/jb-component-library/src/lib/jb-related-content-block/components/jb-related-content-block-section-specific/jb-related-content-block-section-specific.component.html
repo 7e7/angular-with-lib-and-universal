@@ -1,0 +1,33 @@
+<section class="flex flex-column flex-row-ns justify-start">
+  <div
+    #icon
+    class="db"
+    [ngClass]="{
+      dn: !hasContent(icon),
+      'w-8 h-4-5 w-4-5-ns h-4-5-ns flex items-center mb2 mb0-ns mr4-ns': hasContent(
+        icon
+      )
+    }"
+  >
+    <ng-content select="jb-icon"></ng-content>
+  </div>
+  <div
+    #logo
+    class="db"
+    [ngClass]="{
+      dn: !hasContent(logo),
+      'w-8 h-4-5 flex items-center mb2 mb0-ns mr4-ns': hasContent(logo)
+    }"
+  >
+    <ng-content select="jb-image"></ng-content>
+  </div>
+
+  <jb-related-content-block-item>
+    <ng-content select="[JbTitle]" ngProjectAs="[JbTitle]"></ng-content>
+    <ng-content select="jb-copy" ngProjectAs="jb-copy"></ng-content>
+    <ng-content
+      select="[jbActionLink]"
+      ngProjectAs="[jbActionLink]"
+    ></ng-content>
+  </jb-related-content-block-item>
+</section>

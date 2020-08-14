@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+
+:host(.bg-sky-blue-transparent) {
+  &:hover {
+    background-color: rgba($sky-blue, 0.15);
+  }
+}
+
+.secondary-header-bt {
+  border-top: 1px solid $medium-gray;
+}
+
+:host-context(.page-margin) {
+  .expansion-panel-header {
+    padding-left: $page-margin-s;
+    padding-right: $page-margin-s;
+    @media #{$breakpoint-not-small} {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+:host-context(.ph0) {
+  .expansion-panel-header {
+    padding-left: 0;
+    padding-right: 0;
+    @media #{$breakpoint-not-small} {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

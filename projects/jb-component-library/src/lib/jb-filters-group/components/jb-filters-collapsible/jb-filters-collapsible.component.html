@@ -1,0 +1,9 @@
+<div class="flex">
+  <div *ngIf="isMobile$ | async; else desktop">
+    <ng-content select="[jbFilterDrawerContent]"></ng-content>
+  </div>
+</div>
+
+<ng-template #desktop>
+  <ng-content select="jb-filters-wrapper"></ng-content>
+</ng-template>

@@ -1,0 +1,33 @@
+<ng-template>
+  <jb-flyout-inner
+    [cdkTrapFocus]="enableFocusTrap"
+    role="dialog"
+    [tabIndex]="focusOnContainer ? 0 : -1"
+    [attr.aria-describedby]="ariaDescribedBy"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    class="bg-white static-ns h-auto-ns w-auto-ns"
+    [ngClass]="{
+      'flex h-100 w-100 fixed top-0 left-0 mw-none pop-up-index':
+        fullscreenOnPhone && isMobile,
+      'flyout-z-index': !fullscreenOnPhone || !isMobile,
+      'jb-shadow-4': !boxShadow
+    }"
+    [ngStyle]="{
+      width: width,
+      'min-width.px': currentMinWidth,
+      'max-width.px': currentMaxWidth,
+      'border-top-left-radius': cornerRadiusTop,
+      'border-top-right-radius': cornerRadiusTop,
+      'border-bottom-right-radius': cornerRadiusBottom,
+      'border-bottom-left-radius': cornerRadiusBottom,
+      'box-shadow': boxShadow,
+      visibility: visibility
+    }"
+  >
+    <ng-content></ng-content>
+    <ng-container
+      *ngIf="fullscreenOnPhone && !customStylesOnPhone"
+      jbScrollLock="mobile-only"
+    ></ng-container>
+  </jb-flyout-inner>
+</ng-template>

@@ -1,0 +1,89 @@
+/* The Z-Index Scale is internal and should NOT be changed or directly applied to
+components. Add a z-index to a component by adding the component to the appropriate
+grouping in the Z-Index Applications section. */
+
+// Z-Index Scale (private vars)
+// --------------------------------------------------
+$zIndex-negative-10: -10;
+$zIndex-0: 0;
+$zIndex-1: 10;
+$zIndex-2: 20;
+$zIndex-3: 30;
+$zIndex-4: 40;
+$zIndex-5: 50;
+$zIndex-6: 60;
+$zIndex-7: 70;
+$zIndex-8: 80;
+$zIndex-9: 90;
+$zIndex-10: 100;
+
+// Z-Index Applications
+// --------------------------------------------------
+$zIndex-negative-10--hiddenElement: $zIndex-negative-10;
+
+$zIndex-0--screenBackground: $zIndex-0;
+
+$zIndex-3--blockLinkOverlay: $zIndex-3;
+
+$zIndex-4--flyout: $zIndex-4;
+
+$zIndex-5--buttonLink: $zIndex-5;
+// $zIndex-5--highlightMenu:           $zIndex-5;
+
+// $zIndex-6--editorSidebar:           $zIndex-6;
+// $zIndex-6--navOverlay:              $zIndex-6;
+
+$zIndex-7--stickyNav: $zIndex-7;
+// $zIndex-7--nav:                     $zIndex-7;
+
+// $zIndex-8--transitioningContainer:  $zIndex-8;
+// $zIndex-8--panel:                   $zIndex-8;
+$zIndex-8--drawer: $zIndex-8;
+$zIndex-9--overlay: $zIndex-9;
+$zIndex-9--dialog: $zIndex-9;
+$zIndex-9--popup: $zIndex-9;
+// $zIndex-9--tooltip:                 $zIndex-9;
+
+// $zIndex-10--dev:                    $zIndex-10;
+
+// Z-index Shareable Classes
+// --------------------------------------------------
+.overlay-z-index {
+  z-index: $zIndex-9--overlay;
+}
+
+.dialog-z-index {
+  z-index: $zIndex-9--dialog;
+}
+
+.drawer-z-index {
+  z-index: $zIndex-8--drawer;
+}
+
+.pop-up-index {
+  z-index: $zIndex-9--popup;
+}
+
+.block-link-z-index {
+  z-index: $zIndex-3--blockLinkOverlay;
+}
+
+.flyout-z-index {
+  z-index: $zIndex-4;
+}
+
+.button-z-index {
+  z-index: $zIndex-5--buttonLink;
+}
+
+.background-z-index {
+  z-index: $zIndex-0--screenBackground;
+}
+
+.z-negative-10 {
+  z-index: $zIndex-negative-10--hiddenElement;
+}
+
+.sticky-header-z-index {
+  z-index: $zIndex-7--stickyNav;
+}

@@ -1,0 +1,87 @@
+<div
+  class="flex flex-column rounded-border relative static-ns h-100 ba-ns b--medium-gray mt0"
+>
+  <div class="dn-ns w-100 bg-core-blue flex justify-center ph3">
+    <h4 class="b white din ma0 flex items-center h-2-5">Filters</h4>
+    <jb-button-close
+      size="large"
+      (click)="onCancel()"
+      class="mv-11 absolute right-0 top-0 pr3 "
+    ></jb-button-close>
+  </div>
+  <div
+    class="flex flex-column overflow-y-auto mobile-content flex-1-1 flex-auto-ns"
+  >
+    <div class="ph4 pt4 pt0-ns">
+      <div class="jb-grid mb3 mb0-ns">
+        <h4 class="db dn-ns col-9 din">
+          <ng-content select="[jbFiltersContentTitle]"></ng-content>
+        </h4>
+        <!-- Reset button mobile -->
+        <div class="db dn-ns col-3 flex justify-end">
+          <button
+            (click)="onReset()"
+            [ngClass]="{
+              dn: !isApplied,
+              'flex items-center b--none ma0 mt2 bg-transparent': isApplied
+            }"
+            class="col-3 flex items-center b--none pa0 b royal-blue pointer ma0 mt2"
+          >
+            <jb-copy size="small">
+              <ng-content select="[resetMobile]"></ng-content>
+            </jb-copy>
+          </button>
+        </div>
+      </div>
+      <jb-copy class="content-description">
+        <ng-content select="[jbFiltersContentDescription]"></ng-content>
+      </jb-copy>
+    </div>
+    <div
+      *ngIf="!hasSections"
+      class="pb3 pa4"
+      [ngClass]="{ 'bb b--medium-gray': hasDivider }"
+    >
+      <ng-content select="[jbFiltersInnerContent]"></ng-content>
+    </div>
+    <!-- Only when sub sections exist -->
+    <div
+      *ngIf="hasSections"
+      class="pt4"
+      [ngClass]="{ 'bb b--medium-gray': hasDivider }"
+    >
+      <ng-content select="[jbFiltersInnerSectionContent]"></ng-content>
+    </div>
+    <div *ngIf="drawer">
+      <ng-content select="jb-filters-mobile-content"></ng-content>
+    </div>
+  </div>
+  <!-- Apply Button -->
+  <div
+    class="flex justify-center justify-between-ns bg-white-ns bg-royal-blue ph0 pv0 bottom-0 static-ns w-100 b--medium-gray br-rounded-4"
+  >
+    <!-- Reset button desktop -->
+    <div class="dn db-ns pl4 pv3">
+      <button
+        (click)="onReset()"
+        [ngClass]="{
+          dn: !isApplied,
+          'flex items-center b--none pa0 b royal-blue pointer ma0 bg-transparent': isApplied
+        }"
+        class="flex items-center b--none pa0 b royal-blue pointer ma0"
+      >
+        <jb-copy size="small">
+          <ng-content select="[reset]"></ng-content>
+        </jb-copy>
+      </button>
+    </div>
+    <button
+      class="apply-button b pointer underline-hover white royal-blue-ns bg-royal-blue bg-white-ns pr4-ns ma0 b--none"
+      (click)="onClose(); applyOnMobile()"
+    >
+      <jb-copy size="small" class="h-3-25 flex items-center justify-center">
+        <ng-content select="[apply]"></ng-content>
+      </jb-copy>
+    </button>
+  </div>
+</div>

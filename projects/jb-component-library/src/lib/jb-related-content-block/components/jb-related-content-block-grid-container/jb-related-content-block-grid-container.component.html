@@ -1,0 +1,10 @@
+<div *ngIf="isSectionSpecific" class="dn db-l col-1-l"></div>
+<section
+  class="pa0"
+  [ngClass]="{
+    'jb-grid grid-offset-l one-up': isGridOffset && !isSectionSpecific,
+    'col-12 col-11-m col-9-l': isSectionSpecific
+  }"
+>
+  <ng-content></ng-content>
+</section>

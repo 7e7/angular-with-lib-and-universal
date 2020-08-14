@@ -1,0 +1,35 @@
+<div
+  #outsideContainer
+  class="dn flex-ns action-outside-container"
+  [ngClass]="{ 'border-right': hasInsideItems }"
+></div>
+<button
+  jbAnchor
+  class="tl pa0 avenir pointer royal-blue hover-core-blue border-box bn ml1-ns br-100 h2 w2"
+  [ngClass]="isOpen ? 'bg-medium-gray' : 'bg-white'"
+  #anchor="jbAnchor"
+  #toggleButton
+  [flyout]="actionMenuFlyout"
+  (click)="anchor.toggle()"
+  [attr.aria-label]="menuToggleLabel"
+  [attr.aria-expanded]="isOpen"
+  *ngIf="hasInsideItems"
+>
+  <jb-action-menu-icon></jb-action-menu-icon>
+</button>
+<jb-flyout
+  #actionMenuFlyout
+  [enableFocusTrap]="false"
+  [placement]="menuPlacement"
+  (afterOpened)="afterMenuOpened()"
+  (afterClosed)="afterMenuClosed()"
+  offsetY="8"
+>
+  <div
+    #insideContainer
+    class="action-inside-container ba b--medium-gray overflow-hidden br-rounded-4"
+    role="list"
+    (click)="anchor.close()"
+    (jbTabOut)="closeMenu()"
+  ></div>
+</jb-flyout>

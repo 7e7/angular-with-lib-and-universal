@@ -1,0 +1,20 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
+:host(.jb-avatar-medium),
+.jb-avatar-medium {
+  width: $jb-2-5;
+  height: $jb-2-5;
+  font-size: 1rem;
+  font-family: $din;
+  line-height: 2.1rem;
+}
+
+:host(.jb-avatar-small),
+.jb-avatar-small {
+  width: $jb-1-5;
+  height: $jb-1-5;
+  font-size: 0.75rem;
+  font-family: $din;
+  line-height: 1.15rem;
+}

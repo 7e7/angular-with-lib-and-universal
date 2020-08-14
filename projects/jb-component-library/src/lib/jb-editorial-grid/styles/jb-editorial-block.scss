@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.jb-editorial-block {
+  height: 20rem; //320px
+}
+
+@media #{$media-m} {
+  .jb-editorial-block {
+    height: 24rem; //384px
+  }
+}
+
+@media #{$media-l} {
+  .jb-editorial-block {
+    height: 21.375rem; //342px
+  }
+}

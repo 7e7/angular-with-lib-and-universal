@@ -1,0 +1,70 @@
+@import 'variables.scss';
+
+/* Border */
+.bl2 {
+  border-left-style: solid;
+  border-left-width: 3px;
+}
+
+/* Button Radius */
+.br-rounded-1 {
+  border-radius: 0rem 0.75rem 0.75rem 0rem;
+}
+
+.br-rounded-2 {
+  border-radius: 0.75rem;
+}
+
+.br-rounded-3 {
+  border-radius: 0rem 0rem 0.75rem 0rem;
+}
+
+.br-rounded-4 {
+  border-radius: calculateRem(6);
+}
+
+.br-rounded-4-bottom {
+  border-bottom-right-radius: calculateRem(6);
+  border-bottom-left-radius: calculateRem(6);
+}
+
+/* Box shadows */
+.jb-shadow-4 {
+  box-shadow: $jb-shadow-4;
+}
+
+.jb-shadow-3 {
+  box-shadow: $jb-shadow-3;
+}
+
+.jb-shadow-2 {
+  box-shadow: $jb-shadow-2;
+}
+
+.jb-shadow-1 {
+  box-shadow: $jb-shadow-1;
+}
+
+/* Border colors */
+.b--dark-orange {
+  border-color: $dark-orange;
+}
+
+.b--medium-gray {
+  border-color: $medium-gray;
+}
+
+.b--transparent,
+.hover-b--transparent:hover {
+  border-color: transparent;
+}
+
+/* Outline hover */
+
+.hover-outline-transparent:hover {
+  outline: 1px solid transparent;
+}
+
+.outline-none {
+  outline: none;
+}

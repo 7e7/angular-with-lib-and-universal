@@ -1,0 +1,55 @@
+@import '../styles/variables.scss';
+@import '../styles/page-margin.scss';
+
+.jb-legal-p {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.jb-grid > * {
+  margin-bottom: 0;
+}
+
+@media #{$breakpoint-medium} {
+  .jb-legal-p {
+    padding-top: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+@media #{$breakpoint-large} {
+  .jb-legal-p {
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media #{$breakpoint-not-small} {
+  :host(.promo-block-one-up),
+  :host-context(.promo-block-one-up) {
+    section {
+      border-radius: 0.5rem;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .jb-promo-card {
+      margin: 0;
+    }
+
+    .jb-promo-card-bg {
+      opacity: 0 !important;
+    }
+
+    .jb-stamp-right {
+      right: 1.5rem;
+    }
+
+    .jb-stamp-left {
+      left: 1.5rem;
+    }
+  }
+}

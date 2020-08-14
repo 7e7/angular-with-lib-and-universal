@@ -1,0 +1,39 @@
+@import '../styles/variables.scss';
+
+$size-checkbox: 18px;
+$size-marker: 10px;
+
+input {
+  &:checked + label .checkbox .marker {
+    transform: scale(1);
+  }
+
+  &:focus + label .checkbox {
+    box-shadow: rgba($royal-blue, 0.5) 0 0 2px 2px;
+  }
+
+  &:disabled + label .checkbox {
+    background-color: #ddd;
+    border-color: #bbb;
+    color: #999;
+  }
+
+  &:checked:disabled + label .marker {
+    transform: scale(0.3);
+  }
+}
+
+.checkbox {
+  border-radius: 50%;
+  height: $size-checkbox;
+  transform: scale(1);
+  width: $size-checkbox;
+}
+
+.marker {
+  border-radius: 50%;
+  height: $size-marker;
+  transform: scale(0);
+  width: $size-marker;
+  margin: 3px;
+}

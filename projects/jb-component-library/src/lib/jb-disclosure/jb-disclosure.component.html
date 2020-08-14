@@ -1,0 +1,8 @@
+<jb-action
+  [ariaExpanded]="isExpanded"
+  [actionIcon]="isExpanded ? 'removeElement' : 'addElement'"
+  (click)="toggle()"
+>
+  {{ title }}
+</jb-action>
+<ng-content *ngIf="isExpanded"></ng-content>

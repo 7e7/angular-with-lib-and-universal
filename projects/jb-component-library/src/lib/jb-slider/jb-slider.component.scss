@@ -1,0 +1,97 @@
+@import '../styles/variables.scss';
+
+$thumb-diameter: 24px;
+$thumb-radius: $thumb-diameter/2;
+$track-length: 264px;
+$track-width: 2px;
+
+@mixin thumb {
+  /* common styles */
+  border: 1px solid $royal-blue;
+  height: $thumb-diameter;
+  width: $thumb-diameter;
+  border-radius: 50%;
+  background: $white;
+  cursor: pointer;
+}
+
+@mixin track {
+  width: 100%;
+  height: $track-width;
+  cursor: pointer;
+}
+
+input[type='range'] {
+  /* Hides the slider so that custom slider can be made */
+  appearance: none;
+  width: $track-length;
+  background: transparent;
+  padding: 0px;
+  height: $thumb-diameter + $track-width;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+}
+
+input[type='range']::-ms-track {
+  width: 100%;
+  height: $track-width;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  border-width: $thumb-radius 0;
+  color: transparent;
+}
+
+input[type='range']::-ms-tooltip {
+  display: none;
+}
+
+/* SLIDER THUMB STYLING */
+input[type='range'] {
+  &::-webkit-slider-thumb {
+    appearance: none;
+    @include thumb;
+  }
+  /* All the same stuff for Firefox and IE */
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+
+  &::-ms-thumb {
+    @include thumb;
+  }
+}
+
+// When thumb is selected the color should change
+input[type='range']:active {
+  &::-webkit-slider-thumb {
+    background: $royal-blue;
+  }
+
+  &::-moz-range-thumb {
+    background: $royal-blue;
+  }
+
+  &::-ms-thumb {
+    background: $royal-blue;
+  }
+}
+
+/* SLIDER TRACK STYLING */
+input[type='range'] {
+  &::-ms-fill-lower {
+    background: $royal-blue;
+  }
+}
+
+.slider-track {
+  position: absolute;
+  width: $track-length;
+  height: $track-width;
+  margin-top: $thumb-radius;
+  margin-bottom: $thumb-radius;
+}

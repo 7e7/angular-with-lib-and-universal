@@ -1,0 +1,14 @@
+<button
+  [type]="buttonType"
+  [attr.aria-expanded]="ariaExpanded"
+  class="bn pa0 bg-transparent copy-s b royal-blue hover-core-blue flex pointer avenir"
+>
+  <jb-icon
+    [name]="actionIcon"
+    class="pr2 h-1"
+    [style.line-height]="1.3"
+  ></jb-icon>
+  <span class="tl">
+    <ng-content></ng-content>
+  </span>
+</button>

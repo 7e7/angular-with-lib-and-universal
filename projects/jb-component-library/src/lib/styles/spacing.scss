@@ -1,0 +1,68 @@
+@import './variables';
+
+$spacings-rules-map: (
+  'a': (
+    '',
+  ),
+  't': (
+    '-top',
+  ),
+  'b': (
+    '-bottom',
+  ),
+  'l': (
+    '-left',
+  ),
+  'r': (
+    '-right',
+  ),
+  'h': (
+    '-right',
+    '-left',
+  ),
+  'v': (
+    '-top',
+    '-bottom',
+  ),
+);
+
+@mixin get-spacing-rules($type, $rules, $value) {
+  @each $rule in $rules {
+    #{$type}#{$rule}: map-get($spacing, $value);
+  }
+}
+
+@mixin create-spacing-classes($type, $value) {
+  $letter: str-slice($type, 0, 1);
+
+  @each $suffix, $rules in $spacings-rules-map {
+    $selector: '.#{$letter}#{$suffix}#{$value}';
+
+    #{$selector} {
+      @include get-spacing-rules($type, $rules, $value);
+    }
+
+    #{$selector}-l {
+      @media #{$breakpoint-large} {
+        @include get-spacing-rules($type, $rules, $value);
+      }
+    }
+
+    #{$selector}-m {
+      @media #{$breakpoint-medium} {
+        @include get-spacing-rules($type, $rules, $value);
+      }
+    }
+
+    #{$selector}-ns {
+      @media #{$breakpoint-not-small} {
+        @include get-spacing-rules($type, $rules, $value);
+      }
+    }
+  }
+}
+
+@for $i from 8 through 10 {
+  @include create-spacing-classes('padding', $i);
+  @include create-spacing-classes('margin', $i);
+}

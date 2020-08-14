@@ -1,0 +1,29 @@
+<ul class="list pa0 flex flex-row justify-center ph5 copy-xs mb1">
+  <li
+    class="pa0 flex items-start"
+    *ngFor="let month of availableMonths; let i = index"
+  >
+    <button
+      [attr.aria-label]="month | date: 'MMMM'"
+      class="core-blue b-hover bn bg-transparent pointer pv2 ph1"
+      [ngClass]="{
+        'b fw6 active-month':
+          isSameMonthAs(month, activeMonths[0]) ||
+          (activeMonths.length >= 2 && isSameMonthAs(month, activeMonths[1]))
+      }"
+      (click)="onClickEmitEvent(month)"
+    >
+      {{ month | date: 'MMM' }}
+    </button>
+    <div
+      *ngIf="i !== availableMonths.length - 1"
+      class="dib pv2"
+      [ngClass]="{
+        'b fw6 active-month':
+          activeMonths.length >= 2 && isSameMonthAs(month, activeMonths[0]),
+        pr5: activeMonths.length >= 2,
+        pr2: activeMonths.length < 2
+      }"
+    ></div>
+  </li>
+</ul>

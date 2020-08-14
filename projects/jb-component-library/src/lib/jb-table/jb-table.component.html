@@ -1,0 +1,361 @@
+<ng-template #headerTemplate let-header="header" let-index="index">
+  <h4
+    [innerHTML]="header.headerName"
+    class="b ma0"
+    [ngClass]="header.sortable && isSortable ? 'pr2' : 'pr3'"
+  ></h4>
+  <span class="flex-ns dn flex-column" *ngIf="header.sortable && isSortable">
+    <jb-icon
+      class="flex core-blue"
+      [class.sky-blue]="isDescendingOrdered(index, 'descending')"
+      name="upFilled"
+      height="8px"
+      width="8px"
+    ></jb-icon>
+    <jb-icon
+      class="flex core-blue"
+      [class.sky-blue]="isDescendingOrdered(index, 'ascending')"
+      name="downFilled"
+      height="8px"
+      width="8px"
+    ></jb-icon>
+  </span>
+</ng-template>
+
+<ng-template #desktopRowTemplate let-row="row" let-isFooter="isFooter">
+  <div
+    role="cell"
+    class="flex-1 pa3"
+    *ngFor="let cell of row.rowData; let first = first"
+    [id]="cell.id"
+  >
+    <ng-container *ngIf="!isFooter && row.isSubHeader; else isNotSubHeader">
+      <h4
+        *ngIf="cell.type === 'string' && first"
+        [innerHTML]="cell.value"
+        class="mb0 b"
+      ></h4>
+    </ng-container>
+    <ng-template #isNotSubHeader>
+      <ng-container *ngIf="first && isComparisonType">
+        <h4
+          *ngIf="cell.type === 'string'"
+          [innerHTML]="cell.value"
+          class="mb0"
+          [class.b]="isFooter"
+        ></h4>
+      </ng-container>
+      <ng-container *ngIf="(first && isSimpleType) || !first">
+        <div
+          *ngIf="cell.type === 'string'"
+          [innerHTML]="cell.value"
+          class="copy-s"
+          [class.b]="isFooter"
+        ></div>
+      </ng-container>
+      <span
+        *ngIf="cell.type === 'icon' && cell.iconLabel"
+        class="screen-reader-only"
+      >
+        {{ cell.iconLabel }}
+      </span>
+      <jb-icon
+        class="bright-blue"
+        *ngIf="cell.type === 'icon'"
+        [name]="renderIcon(cell.value)"
+        [ngStyle]="{ color: cell.iconColor }"
+      ></jb-icon>
+    </ng-template>
+  </div>
+</ng-template>
+
+<ng-template
+  #mobileRowTemplate
+  let-row="row"
+  let-i="i"
+  let-last="last"
+  let-isFooter="isFooter"
+>
+  <h4
+    *ngIf="!isFooter && row.isSubHeader"
+    class="b mv3"
+    [innerHTML]="row.rowData[0]?.value"
+  ></h4>
+  <jb-expansion-panel
+    [isPrimary]="false"
+    *ngIf="isFooter || !row.isSubHeader"
+    [class.subsection-end]="last || isFooter || rows[i + 1].isSubHeader"
+  >
+    <jb-expansion-panel-header
+      [isPrimary]="false"
+      [class.section-start]="i === 0 && !isFooter"
+      [class.bt-0]="i === 0 && isFooter"
+      [class.subsection-start]="i > 0 && !isFooter && rows[i - 1].isSubHeader"
+    >
+      <span [innerHTML]="row.rowData[0]?.value"></span>
+    </jb-expansion-panel-header>
+    <ng-container
+      *ngFor="let cell of row.rowData; let last = last; let index = index"
+    >
+      <jb-expansion-panel-row [isPrimary]="false" *ngIf="index !== 0">
+        <div role="table">
+          <div
+            role="rowgroup"
+            class="b--light-gray"
+            [ngClass]="last ? 'mb2' : 'bb pb3'"
+          >
+            <div role="row" class="jb-grid flex-row">
+              <!-- row header -->
+              <div role="cell" class="col-6">
+                <h4
+                  [innerHTML]="getHeaderById(cell.columnId)?.headerName"
+                  class="mb0"
+                ></h4>
+              </div>
+              <!-- cells -->
+              <div role="cell" class="col-6">
+                <div
+                  *ngIf="cell.type === 'string'"
+                  [innerHTML]="cell.value"
+                  class="copy-s"
+                ></div>
+                <span
+                  *ngIf="cell.type === 'icon' && cell.iconLabel"
+                  class="screen-reader-only"
+                >
+                  {{ cell.iconLabel }}
+                </span>
+                <jb-icon
+                  class="bright-blue"
+                  *ngIf="cell.type === 'icon'"
+                  [name]="renderIcon(cell.value)"
+                  [ngStyle]="{ color: cell.iconColor }"
+                ></jb-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </jb-expansion-panel-row>
+    </ng-container>
+  </jb-expansion-panel>
+</ng-template>
+
+<div class="dn" [ngClass]="{ 'col-1-l db-l': hasLessThanFourHeaders }"></div>
+<div
+  class="jb-grid-ma0"
+  [ngClass]="{
+    'col-7-l col-9-m': hasTwoHeaders,
+    'col-10-l col-12-m': hasThreeHeaders,
+    'col-12': hasMoreThanFourHeaders
+  }"
+>
+  <!-- Desktop -->
+  <div role="table" class="dn db-ns">
+    <div
+      #headerRow
+      role="rowgroup"
+      [style.top.px]="stickyHeader ? headerOffset : 0"
+      [ngClass]="{
+        sticky: stickyHeader
+      }"
+    >
+      <div role="row" class="flex bg-white">
+        <div
+          [id]="header.id"
+          role="columnheader"
+          *ngFor="let header of headers; let index = index"
+          class="flex items-center flex-1 header-border b--sky-blue"
+          [ngStyle]="{ borderColor: header.borderColor }"
+          [attr.aria-sort]="getAriaSort(index)"
+        >
+          <div class="pa3" *ngIf="!header.sortable || !isSortable">
+            <ng-container
+              [ngTemplateOutlet]="headerTemplate"
+              [ngTemplateOutletContext]="{ header: header, index: index }"
+            ></ng-container>
+          </div>
+          <button
+            *ngIf="header.sortable && isSortable"
+            class="dn pa3 bg-transparent flex-ns bn pointer w-100 items-center pointer hover-bg-sky-blue-transparent"
+            type="button"
+            (click)="sortGroupByHeaderIndex(index)"
+            [title]="getAriaSort(index)"
+          >
+            <ng-container
+              [ngTemplateOutlet]="headerTemplate"
+              [ngTemplateOutletContext]="{ header: header, index: index }"
+            ></ng-container>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div role="rowgroup" #bodyRow>
+      <div
+        role="row"
+        *ngFor="let row of rowArray; let i = index; let last = last"
+        [id]="row.id"
+        class="flex bb b--medium-gray copy-s"
+        [class.last-border]="last"
+        [class.no-border]="!last && rowArray[i + 1].isSubHeader"
+      >
+        <ng-container
+          [ngTemplateOutlet]="desktopRowTemplate"
+          [ngTemplateOutletContext]="{ row: row }"
+        ></ng-container>
+      </div>
+    </div>
+    <div role="rowgroup">
+      <div
+        role="row"
+        *ngFor="let row of footers; let i = index; let last = last"
+        [id]="row.id"
+        class="flex bb b--medium-gray copy-s"
+        [class.last-border]="last"
+        [class.no-border]="!last"
+      >
+        <ng-container
+          [ngTemplateOutlet]="desktopRowTemplate"
+          [ngTemplateOutletContext]="{ row: row, isFooter: true }"
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Collapse by Column-->
+  <div
+    class="dn-ns"
+    *ngIf="mobileGrouping === 'column'; else mobileGroupingRow"
+  >
+    <jb-accordion>
+      <ng-container
+        *ngFor="let header of headers; let rowIndex = index; let last = last"
+      >
+        <jb-expansion-panel [isPrimary]="false" *ngIf="rowIndex !== 0">
+          <jb-expansion-panel-header
+            [isPrimary]="false"
+            [class.section-start]="rowIndex === 0"
+          >
+            <span [innerHTML]="header.headerName"></span>
+          </jb-expansion-panel-header>
+          <ng-container
+            *ngFor="
+              let cell of columnArray[rowIndex];
+              let lastColumn = last;
+              let columnIndex = index
+            "
+          >
+            <jb-expansion-panel-row
+              *ngIf="columnIndex === 0"
+              [isPrimary]="false"
+              class="ph1 pt4"
+              [ngClass]="columnIndex === 0 ? 'pt4' : ''"
+            >
+              <div role="table">
+                <div role="rowgroup">
+                  <div role="row" class="jb-grid flex-row">
+                    <div role="cell" class="col-6">
+                      <h4 [innerHtml]="accordionTitle"></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </jb-expansion-panel-row>
+            <jb-expansion-panel-row
+              [isPrimary]="false"
+              class="ph1"
+              [ngClass]="columnIndex === 0 && !accordionTitle ? 'pt4' : ''"
+            >
+              <div role="table">
+                <div
+                  role="rowgroup"
+                  class="b--light-gray"
+                  [ngClass]="{
+                    bw2: cell.isLastRow,
+                    'bb pb3': !lastColumn && !cell.isSubHeader
+                  }"
+                >
+                  <div
+                    *ngIf="cell.isSubHeader"
+                    role="row"
+                    class="jb-grid flex-row"
+                  >
+                    <h4 role="cell" class="col-6" [innerHtml]="cell.value"></h4>
+                  </div>
+                  <div
+                    *ngIf="!cell.isSubHeader"
+                    role="row"
+                    class="jb-grid flex-row"
+                  >
+                    <div
+                      role="cell"
+                      class="col-6 pr7"
+                      [ngClass]="cell.isFooter ? 'fw7' : 'fw5'"
+                      [innerHtml]="columnArray[0][columnIndex].value"
+                    ></div>
+                    <div role="cell" class="col-6">
+                      <div
+                        *ngIf="cell.type === 'string'"
+                        [innerHTML]="cell.value"
+                        class="copy-s"
+                        [ngClass]="cell.isFooter ? 'fw7' : ''"
+                      ></div>
+                      <span
+                        *ngIf="cell.type === 'icon' && cell.iconLabel"
+                        class="screen-reader-only"
+                      >
+                        {{ cell.iconLabel }}
+                      </span>
+                      <jb-icon
+                        class="bright-blue"
+                        *ngIf="cell.type === 'icon'"
+                        [name]="renderIcon(cell.value)"
+                        [ngStyle]="{ color: cell.iconColor }"
+                      ></jb-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </jb-expansion-panel-row>
+          </ng-container>
+        </jb-expansion-panel>
+      </ng-container>
+    </jb-accordion>
+  </div>
+
+  <!-- Mobile Collapse by Row -->
+  <ng-template #mobileGroupingRow>
+    <div class="dn-ns">
+      <h4 class="b mb3" [innerHtml]="accordionTitle"></h4>
+      <jb-accordion>
+        <ng-container *ngFor="let row of rows; let i = index; let last = last">
+          <ng-container
+            [ngTemplateOutlet]="mobileRowTemplate"
+            [ngTemplateOutletContext]="{ row: row, i: i, last: last }"
+          ></ng-container>
+        </ng-container>
+        <ng-container
+          *ngFor="let row of footers; let i = index; let last = last"
+        >
+          <ng-container
+            [ngTemplateOutlet]="mobileRowTemplate"
+            [ngTemplateOutletContext]="{
+              row: row,
+              i: i,
+              last: last,
+              isFooter: true
+            }"
+          ></ng-container>
+        </ng-container>
+      </jb-accordion>
+    </div>
+  </ng-template>
+
+  <!-- Legal -->
+  <ol *ngIf="isLegalAvailable" class="copy-xs mt3 mb0 mh3-ns pl3">
+    <li
+      *ngFor="let legalItem of legal"
+      [innerHTML]="legalItem"
+      class="pv0"
+    ></li>
+  </ol>
+</div>

@@ -1,0 +1,43 @@
+$jb-min-width: 320px;
+$jb-max-width: 936px; // Grid max width is actually 1024px
+$jb-input-max-width: 18.4375rem;
+$jb-input-height: 3.5rem;
+
+// The left and right margins.
+$page-margin-l: 2.75rem;
+$page-margin-m: 2.25rem;
+$page-margin-s: 1rem;
+
+$grid-gap: 1.5rem; // this is 24px
+$grid-gap-mobile: 1rem; // this is 16px
+// IE flex-box width calculation support
+$margin-desktop: calc(
+  #{$page-margin-l} - (#{$grid-gap} / 2)
+); //so we don't have to remove margins selectively
+$margin-tablet: calc(#{$page-margin-m} - (#{$grid-gap} / 2)); // this is 12px
+$margin-mobile: calc(
+  #{$page-margin-s} - (#{$grid-gap-mobile} / 2)
+); // this is 8px
+
+// TACHYONS SPACE OVERRIDES
+$spacing-extra-small: 0.25rem; // 4px
+$spacing-small: 0.5rem; // 8px
+$spacing-medium: 1rem; // 16px
+$spacing-large: 1.5rem; // 24px
+$spacing-extra-large: 2rem; // 32px
+$spacing-extra-extra-large: 2.5rem; // 40px
+$spacing-extra-extra-extra-large: 3rem; // 48px
+
+// JetBlue Space Scale
+$spacing: (
+  1: $spacing-extra-small,
+  2: $spacing-small,
+  3: $spacing-medium,
+  4: $spacing-large,
+  5: $spacing-extra-large,
+  6: $spacing-extra-extra-large,
+  7: $spacing-extra-extra-extra-large,
+  8: 3.5rem,
+  9: 4rem,
+  10: 4.5rem,
+);

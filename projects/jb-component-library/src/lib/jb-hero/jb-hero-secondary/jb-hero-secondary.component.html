@@ -1,0 +1,16 @@
+<header
+  [ngClass]="{
+    'bg-white core-blue': isLightTheme,
+    'bg-core-blue white': isDarkTheme
+  }"
+>
+  <jb-breadcrumbs [item]="breadcrumbs" [theme]="theme"></jb-breadcrumbs>
+  <div class="flex items-center pl6-ns mt0 mt2-ns pb2-l pb3">
+    <h1 class="ml6-l mb4-ns mb3" [ngClass]="{ white: isDarkTheme }">
+      <ng-content select="[JbTitle]"></ng-content>
+    </h1>
+    <div class="ml4 mr5 mr0-ns mb3-ns">
+      <ng-content select="jb-icon"></ng-content>
+    </div>
+  </div>
+</header>

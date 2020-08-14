@@ -1,0 +1,29 @@
+<div class="w-100 flex">
+  <div #outerScroller class="w-100 flex">
+    <jb-horizontal-scroller-button
+      #leftScrollButton
+      direction="left"
+      (click)="onLeftScroll()"
+      [isDisabled]="leftButtonDisabled"
+      [isVisible]="showScrollButtons"
+      [style.height]="scrollButtonHeight + 'px'"
+    ></jb-horizontal-scroller-button>
+    <div class="nowrap overflow-x-hidden w-100-ns">
+      <div
+        #scrollerContent
+        class="scroller-content nowrap flex-grow-1 overflow-x-scroll"
+        (keydown)="onKeyDown($event)"
+      >
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <jb-horizontal-scroller-button
+      #rightScrollButton
+      direction="right"
+      (click)="onRightScroll()"
+      [isDisabled]="rightButtonDisabled"
+      [isVisible]="showScrollButtons"
+      [style.height]="scrollButtonHeight + 'px'"
+    ></jb-horizontal-scroller-button>
+  </div>
+</div>

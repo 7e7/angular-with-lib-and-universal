@@ -1,0 +1,26 @@
+<!-- Safari and Firefox needs $event.target.focus() or else onTouched won't fire on click away -->
+<input
+  type="radio"
+  class="screen-reader-only"
+  [attr.name]="groupId"
+  [id]="radioId"
+  [attr.value]="value"
+  [checked]="checked"
+  [disabled]="disabled"
+  (click)="$event.target.focus()"
+  (change)="_changeValue()"
+  (blur)="_blur()"
+/>
+
+<label
+  class="charcoal avenir f5 pointer flex items-center mr2"
+  [for]="radioId"
+  #label
+>
+  <div class="checkbox ba b--royal-blue bg-white pointer">
+    <div class="marker ba b--transparent bg-core-blue t-vfast"></div>
+  </div>
+  <div class="ph2">
+    <ng-content></ng-content>
+  </div>
+</label>

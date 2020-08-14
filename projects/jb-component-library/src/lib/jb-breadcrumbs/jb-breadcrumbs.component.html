@@ -1,0 +1,68 @@
+<nav
+  class="flex flex-wrap items-center pt3 pb2"
+  [ngClass]="{ 'bg-core-blue': isDarkTheme }"
+  role="navigation"
+  aria-label="breadcrumbs"
+>
+  <ul class="flex ma0 pa0 list">
+    <li
+      *ngFor="let breadcrumbItem of item.parentPages; let isFirst = first"
+      class="dn flex-ns items-center pb2"
+      [class.white]="isDarkTheme"
+      [class.medium-gray]="isLightTheme"
+    >
+      <span [class.slate-gray]="isLightTheme">
+        <jb-icon *ngIf="!isFirst" class="ph2" name="breadcrumbSlash"></jb-icon>
+      </span>
+      <a
+        [href]="breadcrumbItem.href"
+        class="copy-s no-underline underline-hover"
+        [ngClass]="{
+          'white hover-white': isDarkTheme,
+          'royal-blue hover-core-blue': isLightTheme
+        }"
+      >
+        {{ breadcrumbItem.name | truncate }}
+      </a>
+    </li>
+    <li
+      class="dn flex-ns items-center pb2"
+      [class.white]="isDarkTheme"
+      [class.medium-gray]="isLightTheme"
+    >
+      <span [class.slate-gray]="isLightTheme">
+        <jb-icon class="ph2" name="breadcrumbSlash"></jb-icon>
+      </span>
+      <span
+        class="dib ma0 copy-s"
+        [class.white]="isDarkTheme"
+        [class.charcoal]="isLightTheme"
+      >
+        {{ item.name | truncate }}
+      </span>
+    </li>
+  </ul>
+  <span
+    *ngIf="directParent"
+    class="relative dn-ns w-100 flex-s items-center pb2"
+    [class.white]="isDarkTheme"
+    [class.royal-blue]="isLightTheme"
+  >
+    <jb-icon
+      name="rightFilled"
+      class="rotate-y-180 dib"
+      height="10px"
+      width="10px"
+    ></jb-icon>
+    <a
+      [href]="directParent.href"
+      class="copy-s no-underline underline-hover"
+      [ngClass]="{
+        'white hover-white': isDarkTheme,
+        'royal-blue hover-core-blue': isLightTheme
+      }"
+    >
+      {{ directParent.name | truncate }}
+    </a>
+  </span>
+</nav>

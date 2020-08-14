@@ -1,0 +1,31 @@
+<button
+  class="w-100 charcoal bg-white hover-bg-light-gray ba br-rounded-4 pa2 flex items-center copy-s tl avenir pointer"
+  type="button"
+  [ngClass]="
+    isActive ? 'active b--royal-blue' : 'b--medium-gray hover-b--transparent'
+  "
+>
+  <jb-sr-only>{{ seatType }}</jb-sr-only>
+  <jb-icon
+    *ngIf="mosaicStatus"
+    name="avatarMosaicStatus"
+    width="28px"
+    height="24px"
+    class="self-end absolute"
+    label="mosaicStatus"
+  ></jb-icon>
+  <div
+    class="pr2 flex"
+    [attr.aria-hidden]="true"
+    [ngClass]="mosaicStatus ? 'mosaic-avatar-pl' : ''"
+  >
+    <ng-content select="jb-avatar"></ng-content>
+  </div>
+  <div class="flex flex-column truncate" size="small">
+    <div #contentWrapper>
+      <ng-content select="jb-avatar-card-name"></ng-content>
+    </div>
+    <ng-content select="jb-avatar-card-seat"></ng-content>
+    <ng-content></ng-content>
+  </div>
+</button>

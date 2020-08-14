@@ -1,0 +1,34 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.mobile-content {
+  // To hide scroll bars for IE
+  -ms-overflow-style: none;
+}
+
+.rounded-border {
+  @media #{$breakpoint-not-small} {
+    border-radius: calculateRem(6);
+  }
+}
+
+@media #{$breakpoint-not-small} {
+  .content-description:not(:empty) {
+    padding-top: 1.5rem; // pt4
+  }
+}
+
+.apply-button {
+  width: 100%;
+
+  @media #{$breakpoint-not-small} {
+    border-radius: calculateRem(6);
+    width: auto;
+  }
+}
+
+.flex-1-1 {
+  @media #{$breakpoint-small} {
+    flex: 1 1;
+  }
+}
