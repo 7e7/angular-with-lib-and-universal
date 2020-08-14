@@ -57,7 +57,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cookbook",
+            "outputPath": "dist/cookbook/browser",
             "index": "projects/cookbook/src/index.html",
             "main": "projects/cookbook/src/main.ts",
             "polyfills": "projects/cookbook/src/polyfills.ts",
@@ -67,10 +67,9 @@
               "projects/cookbook/src/favicon.ico",
               "projects/cookbook/src/assets"
             ],
-            "styles": [
-              "projects/cookbook/src/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["projects/cookbook/src/styles/index.scss"],
+            "scripts": [],
+            "baseHref": "/component-library/"
           },
           "configurations": {
             "production": {
@@ -160,6 +159,53 @@
             "production": {
               "devServerTarget": "cookbook:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/cookbook/server",
+            "main": "projects/cookbook/server.ts",
+            "tsConfig": "projects/cookbook/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "projects/cookbook/src/environments/environment.ts",
+                  "with": "projects/cookbook/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "cookbook:build",
+            "serverTarget": "cookbook:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "cookbook:build:production",
+              "serverTarget": "cookbook:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "cookbook:build:production",
+            "serverTarget": "cookbook:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

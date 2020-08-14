@@ -1,0 +1,25 @@
+/* Typography */
+
+html {
+  font-family: $body-copy-typeface;
+  font-size: 1rem;
+  text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-copy-typeface;
+  margin: 0;
+  font-weight: normal;
+  color: $core-blue;
+}
+
+input,
+select,
+textarea {
+  font-family: $display-copy-typeface;
+}

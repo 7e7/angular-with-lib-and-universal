@@ -1,9 +1,0 @@
-<fieldset class="pa0 ma0 bn">
-  <legend [attr.aria-label]="ariaLabel">
-    <ng-container *ngIf="label">{{ label }}</ng-container>
-  </legend>
-
-  <div class="flex" [ngClass]="{ 'flex-column': !isHorizontal }">
-    <ng-content></ng-content>
-  </div>
-</fieldset>

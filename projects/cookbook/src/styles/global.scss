@@ -1,0 +1,143 @@
+@import './variables';
+@import '../../../jb-component-library/src/lib/styles/z-index.scss';
+
+body {
+  color: $charcoal;
+  font-size: 1rem;
+  line-height: 24px; // For standard copy
+}
+
+main {
+  width: 100%;
+}
+
+a:hover {
+  color: $bright-blue;
+}
+
+.hover-white:hover {
+  color: $white;
+}
+
+.hover-bright-blue:hover {
+  color: $bright-blue;
+}
+
+.cb-link {
+  color: $royal-blue;
+  text-decoration: none;
+}
+
+.cb-link:hover {
+  color: $core-blue;
+  text-decoration: underline;
+}
+
+.navbar {
+  z-index: $zIndex-7--stickyNav;
+}
+
+router-outlet + *:not(cb-style-guide) {
+  display: block;
+  background-color: #fff;
+  margin-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.hr-default {
+  border: 1.5px solid $off-white;
+  margin: 0;
+  padding: 0;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Slide toggle */
+.toggle {
+  -webkit-appearance: none; /* stylelint-disable-line */
+  box-shadow: inset $jb-shadow-1;
+  height: 15px;
+  width: 40px;
+}
+
+.toggle:checked {
+  background: rgba(0, 32, 91, 0.3);
+}
+
+.toggle::before {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: $jb-shadow-1;
+  content: '';
+  height: 20px;
+  left: 0;
+  position: absolute;
+  top: -4px;
+  transform: scale(1.1);
+  transition: 0.3s;
+  width: 20px;
+}
+
+.toggle:checked::before {
+  background: #00205b;
+  left: 20px;
+}
+
+.flex-33 {
+  flex: 0 0 33.3333%;
+}
+
+.br-50 {
+  border-radius: 50%;
+}
+
+.back-to-top-container {
+  height: 550vh;
+}
+
+.remove-page-margins {
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+}
+/* Expansion Panel */
+
+@media #{$breakpoint-not-small} {
+  .expansion-panel-img {
+    flex: 0 0 10.9375rem;
+  }
+}
+
+ul {
+  margin: 0;
+}
+
+li {
+  padding: 0.25rem 0;
+}
+
+.lh-2 {
+  line-height: 2rem;
+}
+
+/* --- */
+.cb-page-margin {
+  padding-left: $page-margin-s;
+  padding-right: $page-margin-s;
+  @media #{$breakpoint-medium} {
+    padding-left: $page-margin-m;
+    padding-right: $page-margin-m;
+  }
+  @media #{$breakpoint-large} {
+    padding-left: $page-margin-l;
+    padding-right: $page-margin-l;
+  }
+}
+
+.cb-main-header-section-deprecated {
+  padding-top: 7.5rem;
+  padding-bottom: 7.5rem;
+}
+
+.list-style-disc {
+  list-style-type: disc;
+}
